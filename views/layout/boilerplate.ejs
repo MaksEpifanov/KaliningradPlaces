@@ -14,16 +14,16 @@
   </title>
 </head>
 
-<body class="d-flex flex-column vh-100">
-  <%- include('../partials/navbar') %>
-    <main class="container my-4">
+<body class="d-flex flex-column vh-100 bg-light">
+  <main class="container">
+    <%- include('../partials/navbar') %>
       <div class="col-4 offset-4">
         <%- include('../partials/flash')%>
       </div>
       <%- body %>
-    </main>
-    <%- include('../partials/footer')%>
-      <script src="javascripts/bootstrap/bootstrap.min.js"></script>
+  </main>
+  <%- include('../partials/footer')%>
+    <script src="javascripts/bootstrap/bootstrap.min.js"></script>
 </body>
 
 </html>
