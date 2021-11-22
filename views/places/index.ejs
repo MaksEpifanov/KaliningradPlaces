@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>11</h1>
-</body>
-</html>
+<%- layout('layout/boilerplate') -%>
+<div class="row">
+  <% for (let place of places) {%> 
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <img src="<%= place.images[0].url %>" alt="">
+        <h5 class="card-title"><%= place.title %></h5>
+        <p><%= place.location  %></p>
+        <a href="/places/<%=place.id%>" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <% } %> 
+</div>

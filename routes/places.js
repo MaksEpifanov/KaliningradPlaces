@@ -9,7 +9,7 @@ router.route('/')
 
 router.get('/new', places.renderNewForm);
 
-router.route(':id')
+router.route('/:id')
   .get(places.showPlace)
   .put(places.updatePlace)
   .delete(places.deletePlace);

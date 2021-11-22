@@ -21,12 +21,12 @@ const seedDB = async () => {
       description: 'Cupidatat consectetur laboris non sit aute nisi pariatur elit ipsum officia laboris consequat nisi ad. Et magna pariatur aliquip laborum reprehenderit laboris ut eu eu nisi aliquip aliquip esse eiusmod. Incididunt sint cillum do laborum deserunt laborum magna esse ut proident fugiat quis. Velit sit ad nostrud sint commodo proident minim reprehenderit proident tempor est. Fugiat exercitation mollit mollit laborum ea. Laboris laborum pariatur sit nulla tempor anim mollit commodo. Elit sint nisi duis ad mollit.',
       images: [
         {
-          url: '',
-          filename: ''
+          url: 'https://res.cloudinary.com/dr0eioqqm/image/upload/v1636468790/KgdCamp/xn86mxup9413jfoxpkny.jpg',
+          filename: 'KgdCamp/xn86mxup9413jfoxpkny'
         },
         {
-          url: '',
-          filename: ''
+          url: 'https://res.cloudinary.com/dr0eioqqm/image/upload/v1636195694/KgdCamp/cm1qxsm0evcb7kd6osv9.jpg',
+          filename: 'KgdCamp/cm1qxsm0evcb7kd6osv9'
         },
         // TODO geometry
       ]

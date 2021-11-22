@@ -1,0 +1,19 @@
+<%- layout('layout/boilerplate') %>
+<div class="row">
+  <div class="col-4 offset-1">
+    <h3><%= place.title %></h3>
+    <div class="place">
+      <p><%= place.location %> </p>
+      <div class="user">
+        <!-- TODO author name -->
+      </div>
+    </div>
+    <!-- TODO map -->
+    <p><%= place.description  %> </p>
+    <!-- TODO button comment send -->
+  </div>
+  <div class="col-4">
+    <!-- TODO carusel images -->
+    <img src="<%= place.images[0].url %> " alt="">
+  </div>
+</div>
