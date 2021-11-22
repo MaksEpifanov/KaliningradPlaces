@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Kaliningrad Places" });
 });
+
+router.get("/about", (req, res) => {
+  res.render("about", { title: "About project"});
+})
 
 module.exports = router;
