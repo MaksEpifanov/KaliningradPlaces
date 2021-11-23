@@ -126,7 +126,7 @@ app.use(function (req, res, next) {
 app.use("/", indexRouter);
 app.use("/places", placesRouter);
 // app.use("/places/:id/reviews", reviewsRouter);
-// app.use("/", usersRouter);
+app.use("/", usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
