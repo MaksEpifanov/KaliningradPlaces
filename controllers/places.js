@@ -10,7 +10,7 @@ module.exports.index = async (req, res, next) => {
 };
 
 module.exports.renderNewForm = (req, res, next) => {
-  res.render('places/new', { title: 'Create new place'})
+  res.render('places/create', { title: 'Create new place'})
 };
 
 module.exports.createPlace = async (req, res, next) => {
@@ -18,7 +18,7 @@ module.exports.createPlace = async (req, res, next) => {
   // TODO add geoData with geocoding
 
   const place = new Place(req.body.place);
-  place.images = req.files.map(file => ({url: file.path, filename: file.filename}))
+  place.images = req.files.map(file => ({ url: file.path, filename: file.filename }))
   place.author = req.user._id;
 
   // TODO place.geometry add

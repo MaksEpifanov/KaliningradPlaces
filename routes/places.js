@@ -7,7 +7,7 @@ router.route('/')
   .get(places.index)
   .post(places.createPlace);
 
-router.get('/new', places.renderNewForm);
+router.get('/create', places.renderNewForm);
 
 router.route('/:id')
   .get(places.showPlace)
