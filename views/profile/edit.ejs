@@ -1,0 +1,8 @@
+<%- layout('layout/boilerplate') %>
+<% if (!profile.imageUrl) {%> 
+  <img src="/images/defaultUser.svg" alt="default user image">
+<% } else {%>
+  <img src="<%= profile.imageUrl %>" alt="profile image">
+<% } %>
+<h1><%= profile.username %></h1>
+<h2><%= profile.email  %></h2>

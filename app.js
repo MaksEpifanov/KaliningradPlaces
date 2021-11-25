@@ -30,7 +30,8 @@ async function main() {
 const indexRouter = require("./routes/index");
 const placesRouter = require("./routes/places");
 const reviewsRouter = require("./routes/reviews");
-const usersRouter = require("./routes/users");
+const authenticationRouter = require("./routes/authentication");
+const profilesRouter = require("./routes/profiles");
 
 const app = express();
 
@@ -126,7 +127,8 @@ app.use(function (req, res, next) {
 app.use("/", indexRouter);
 app.use("/places", placesRouter);
 // app.use("/places/:id/reviews", reviewsRouter);
-app.use("/", usersRouter);
+app.use("/", authenticationRouter);
+app.use("/p", profilesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

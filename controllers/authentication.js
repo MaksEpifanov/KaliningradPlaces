@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 module.exports.renderRegisterForm = (req, res) => {
-  res.render('users/register', { title: 'Register new user'})
+  res.render('authentication/register', { title: 'Register new user'})
 };
 module.exports.registerNewUser = async (req, res) => {
   try {
@@ -26,7 +26,7 @@ module.exports.registerNewUser = async (req, res) => {
 };
 
 module.exports.renderLoginForm = (req, res) => {
-  res.render('users/login', { title: 'Login'})
+  res.render('authentication/login', { title: 'Login'})
 }
 module.exports.loginUser = async (req, res, next) => {
   req.flash('success', 'Welcome back!');
@@ -37,6 +37,6 @@ module.exports.loginUser = async (req, res, next) => {
 
 module.exports.logoutUser = (req, res) => {
   req.logout();
-  req.flash('success', 'Bi');
+  req.flash('success', 'Your logout');
   res.redirect('/')
 }
