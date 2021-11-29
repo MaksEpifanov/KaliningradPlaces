@@ -3,20 +3,95 @@
   <div class="col-4 offset-1">
     <h3><%= place.title %></h3>
     <div class="place">
-      <p><%= place.location %> </p>
+      <p><%= place.location %></p>
       <div class="user">
         <!-- TODO author name -->
       </div>
     </div>
     <!-- TODO map -->
-    <p><%= place.description  %> </p>
-    <!-- TODO button comment send -->
+    <p><%= place.description %></p>
+    <!-- TODO button comment sFend -->
   </div>
   <div class="col-4">
     <!-- TODO carusel images -->
-    <% if (place.images[0]) {%> 
-    <img src="<%= place.images[0].url %> " alt="">
-    <% } %> 
+    <% if (place.images[0]) {%>
+    <img src="<%= place.images[0].url %> " alt="" />
+    <% } %>
   </div>
 </div>
 <!-- TODO show comment section -->
+<div class="col-5">
+  <% if(currentUser) { %>
+  <form
+    class="mb-3 validated-form"
+    action="/places/<%= id %>/reviews"
+    method="POST"
+    novalidate
+  >
+    <h5>Leave review</h5>
+    <div class="mb-3">
+      <fieldset class="starability-basic">
+        <legend>Rating:</legend>
+        <input
+          type="radio"
+          id="no-rate"
+          class="input-no-rate"
+          name="review[rating]"
+          value="1"
+          checked
+          aria-label="No rating."
+        />
+        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="review">Review:</label>
+      <textarea
+        class="form-control"
+        name="review[body]"
+        id="review"
+        cols="30"
+        rows="4"
+        required
+      ></textarea>
+    </div>
+    <button class="btn btn-success">Send review</button>
+  </form>
+  <% } %> <% if (place.reviews.length) {%> <% for (let rev of place.reviews) {
+  %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="header-card d-flex justify-content-between">
+        <h6 class="card-title">
+          <%= rev.author.username[0].toUpperCase() +
+          rev.author.username.slice(1) %>
+        </h6>
+
+        <% if(currentUser && rev.author.equals(currentUser._id)) {%>
+        <form
+          action="/campgrounds/<%= campground._id  %>/reviews/<%= rev._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-sm btn-danger">X</button>
+        </form>
+        <%}%>
+      </div>
+      <p class="starability-result" data-rating="<%= rev.rating %>">
+        Rated: <%= rev.rating %> stars
+      </p>
+      <p class="text-muted">Review: <%= rev.body %></p>
+    </div>
+  </div>
+  <% } %> <% } else { %>
+  <p class="list-group-item">no reviews</p>
+  <% } %>
+</div>

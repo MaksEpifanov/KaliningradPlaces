@@ -1,10 +1,12 @@
 const express = require('express');
+
 const router = express.Router();
 
-const places = require('../controllers/places')
-
-const { storage } = require('../cloudinary')
 const multer = require('multer');
+const places = require('../controllers/places');
+
+const { storage } = require('../cloudinary');
+
 const upload = multer({ storage });
 
 router.route('/')
@@ -18,6 +20,6 @@ router.route('/:id')
   .put(places.updatePlace)
   .delete(places.deletePlace);
 
-router.get('/:id/edit', places.renderEditForm)
+router.get('/:id/edit', places.renderEditForm);
 
 module.exports = router;

@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
-const Review = require("./review");
+const Review = require('./review');
 
 const opts = { toJSON: { virtuals: true } };
 const ImageSchema = new Schema({
@@ -8,8 +9,8 @@ const ImageSchema = new Schema({
   filename: String,
 });
 
-ImageSchema.virtual("thumbnail").get(function () {
-  return this.url.replace("/upload", "/upload/w_200");
+ImageSchema.virtual('thumbnail').get(function () {
+  return this.url.replace('/upload', '/upload/w_200');
 });
 
 const PlaceSchema = new Schema(
@@ -20,25 +21,25 @@ const PlaceSchema = new Schema(
     location: String,
     author: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
     reviews: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Review",
+        ref: 'Review',
       },
     ],
   },
-  opts
+  opts,
 );
 
-PlaceSchema.virtual("properties.popUpMarker").get(function () {
+PlaceSchema.virtual('properties.popUpMarker').get(function () {
   return `
     <strong><a href="/places/${this._id}">${this.title}</a></strong>
     <p>${this.description.substring(0, 20)}...</p`;
 });
 
-PlaceSchema.post("findOneAndDelete", async function (doc) {
+PlaceSchema.post('findOneAndDelete', async (doc) => {
   if (doc) {
     await Review.remove({
       _id: {
@@ -48,4 +49,4 @@ PlaceSchema.post("findOneAndDelete", async function (doc) {
   }
 });
 
-module.exports = mongoose.model("Place", PlaceSchema);
+module.exports = mongoose.model('Place', PlaceSchema);

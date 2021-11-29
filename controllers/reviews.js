@@ -14,7 +14,6 @@ module.exports.addReview = async (req, res, next) => {
   res.redirect(`/palces/${place._id}`);
 };
 
-
 //* Delete review
 module.exports.deleteReview = async (req, res, next) => {
   const { id, reviewId } = req.params;

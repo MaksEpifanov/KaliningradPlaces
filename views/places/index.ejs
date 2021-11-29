@@ -1,19 +1,19 @@
 <%- layout('layout/boilerplate') -%>
 <div class="row">
-  <% for (let place of places) {%> 
+  <% for (let place of places) {%>
   <div class="col-4">
     <div class="card">
       <div class="card-body">
-        <% if (place.images[0]) {%> 
-        <img src="<%= place.images[0].url %>" alt="">
+        <% if (place.images[0]) {%>
+        <img src="<%= place.images[0].url %>" alt="" />
         <% } else {%>
         <p>No image</p>
         <% } %>
         <h5 class="card-title"><%= place.title %></h5>
-        <p><%= place.location  %></p>
+        <p><%= place.location %></p>
         <a href="/places/<%=place.id%>" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
-  <% } %> 
+  <% } %>
 </div>
