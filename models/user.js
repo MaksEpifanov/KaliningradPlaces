@@ -8,6 +8,12 @@ const UserSchema = new Schema({
     required: true,
     unique: true
   },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
   imageUrl: {
     type: String
   }

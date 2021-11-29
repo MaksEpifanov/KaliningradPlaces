@@ -18,6 +18,7 @@ module.exports.createPlace = async (req, res, next) => {
   // TODO add geoData with geocoding
 
   const place = new Place(req.body.place);
+  console.log(req.body)
   place.images = req.files.map(file => ({ url: file.path, filename: file.filename }))
   place.author = req.user._id;
 

@@ -2,14 +2,14 @@
 
 <h2 class="text-center">Create new place</h2>
   <div class="col-6 offset-3">
-    <form action="/campgrounds" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
+    <form action="/places" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
-        <input class="form-control" type="text" name="campground[title]" id="title" required>
+        <input class="form-control" type="text" name="place[title]" id="title" required>
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location</label>
-        <input class="form-control" type="text" name="campground[location]" id="location" required>
+        <input class="form-control" type="text" name="place[location]" id="location" required>
       </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="image">Upload image</label>
@@ -17,7 +17,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label" for="description">Description</label>
-        <textarea class="form-control" rows="3" type="text" name="campground[description]" id="description"
+        <textarea class="form-control" rows="3" type="text" name="place[description]" id="description"
           required></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Create</button>

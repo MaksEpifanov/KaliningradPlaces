@@ -3,9 +3,13 @@ const router = express.Router();
 
 const places = require('../controllers/places')
 
+const { storage } = require('../cloudinary')
+const multer = require('multer');
+const upload = multer({ storage });
+
 router.route('/')
   .get(places.index)
-  .post(places.createPlace);
+  .post(upload.array('image'), places.createPlace);
 
 router.get('/create', places.renderNewForm);
 
