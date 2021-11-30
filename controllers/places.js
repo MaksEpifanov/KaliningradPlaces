@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 const Place = require('../models/place');
 
 // TODO Cloudinary images
@@ -19,12 +21,14 @@ module.exports.createPlace = async (req, res, next) => {
   const place = new Place(req.body.place);
   console.log(req.body);
   place.images = req.files.map((file) => ({ url: file.path, filename: file.filename }));
+  // eslint-disable-next-line no-underscore-dangle
   place.author = req.user._id;
 
   // TODO place.geometry add
 
   await place.save();
   req.flash('success', 'Success your create new place');
+  // eslint-disable-next-line no-underscore-dangle
   res.redirect(`places/${place._id}`);
 };
 

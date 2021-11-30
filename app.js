@@ -106,7 +106,7 @@ app.use((req, res, next) => {
 //* Routers
 app.use('/', indexRouter);
 app.use('/places', placesRouter);
-// app.use("/places/:id/reviews", reviewsRouter);
+app.use('/places/:id/reviews', reviewsRouter);
 app.use('/', authenticationRouter);
 app.use('/p', profilesRouter);
 

@@ -11,7 +11,7 @@ module.exports.addReview = async (req, res, next) => {
   await place.save();
   await review.save();
   req.flash('success', 'Your create new review');
-  res.redirect(`/palces/${place._id}`);
+  res.redirect(`/places/${place._id}`);
 };
 
 //* Delete review
