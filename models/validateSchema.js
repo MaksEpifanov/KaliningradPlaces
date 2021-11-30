@@ -15,8 +15,9 @@ const extansion = (joi) => ({
           allowedTags: [],
           allowedAttributes: {},
         });
-        if (clean !== value)
+        if (clean !== value) {
           return helpers.error("string.escapeHTML", { value });
+        }
         return clean;
       },
     },

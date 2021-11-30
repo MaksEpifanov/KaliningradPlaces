@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router({ mergeParams: true });
 
-const review = require('../controllers/reviews');
+const review = require("../controllers/reviews");
 
 //* Add review
-router.post('/', review.addReview);
+router.post("/", review.addReview);
 
 //* Delete review
-router.delete('/:reviewId', review.deleteReview);
+router.delete("/:reviewId", review.deleteReview);
 
 module.exports = router;

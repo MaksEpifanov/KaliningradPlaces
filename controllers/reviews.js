@@ -1,5 +1,5 @@
-const Places = require('../models/place');
-const Review = require('../models/review');
+const Places = require("../models/place");
+const Review = require("../models/review");
 
 //* Add review
 module.exports.addReview = async (req, res, next) => {
@@ -10,7 +10,7 @@ module.exports.addReview = async (req, res, next) => {
   place.reviews.push(review);
   await place.save();
   await review.save();
-  req.flash('success', 'Your create new review');
+  req.flash("success", "Your create new review");
   res.redirect(`/places/${place._id}`);
 };
 
@@ -19,6 +19,6 @@ module.exports.deleteReview = async (req, res, next) => {
   const { id, reviewId } = req.params;
   await Places.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);
-  req.flash('success', 'Your delete review');
+  req.flash("success", "Your delete review");
   res.redirect(`/places/${id}`);
 };
