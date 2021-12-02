@@ -1,14 +1,13 @@
 const express = require("express");
 
 const router = express.Router();
-
 const multer = require("multer");
-const { isLoggedIn, isPlaceAuthor } = require("../middleware");
-const catchAsync = require("../utils/catchAsync");
 const { storage } = require("../cloudinary");
-const places = require("../controllers/places");
 
 const upload = multer({ storage });
+const { isLoggedIn, isPlaceAuthor } = require("../middleware");
+const places = require("../controllers/places");
+const catchAsync = require("../utils/catchAsync");
 
 router
   .route("/")
@@ -33,7 +32,12 @@ router
   )
   .delete(isLoggedIn, isPlaceAuthor, catchAsync(places.deletePlace));
 
-router.get("/:id/edit", catchAsync(places.renderEditForm));
+router.get(
+  "/:id/edit",
+  isLoggedIn,
+  isPlaceAuthor,
+  catchAsync(places.renderEditForm)
+);
 // TODO protect this rout
 
 module.exports = router;
