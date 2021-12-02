@@ -12,12 +12,7 @@ const catchAsync = require("../utils/catchAsync");
 router
   .route("/")
   .get(catchAsync(places.index))
-  .post(
-    isLoggedIn,
-    upload.array("image"),
-    isPlaceAuthor,
-    catchAsync(places.createPlace)
-  );
+  .post(isLoggedIn, upload.array("image"), catchAsync(places.createPlace));
 
 router.get("/create", isLoggedIn, catchAsync(places.renderNewForm));
 
