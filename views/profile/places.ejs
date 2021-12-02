@@ -14,6 +14,9 @@
         <p><%= place.location %></p>
         <a href="/places/<%=place.id%>" class="btn btn-primary">Go somewhere</a>
         <a href="/places/<%=place.id%>/edit" class="btn btn-primary">Edit</a>
+        <form action="/places/<%= place.id %>?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
       </div>
     </div>
   </div>
