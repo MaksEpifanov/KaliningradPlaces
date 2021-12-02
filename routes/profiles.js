@@ -1,25 +1,14 @@
-/* eslint-disable no-unused-vars */
 const express = require("express");
 
 const router = express.Router();
-const User = require("../models/user");
-const Place = require("../models/place");
+const {
+  renderProfilePage,
+  renderProfilePlaces,
+} = require("../controllers/profiles");
+const { isLoggedIn, isProfileAuthor } = require("../middleware");
 
-router.get("/:id", async (req, res, next) => {
-  const { id } = req.params;
-  const profile = await User.findById(id);
-  res.render("profile/edit", { title: `${profile.username}`, profile });
-});
+router.get("/:id", isLoggedIn, isProfileAuthor, renderProfilePage);
 
-router.get("/:id/places", async (req, res, next) => {
-  const { id } = req.params;
-  const profile = await User.findById(id);
-  const places = await Place.find({ author: id });
-  res.render("profile/places", {
-    title: `All places ${profile.username}`,
-    profile,
-    places,
-  });
-});
+router.get("/:id/places", isLoggedIn, isProfileAuthor, renderProfilePlaces);
 
 module.exports = router;
