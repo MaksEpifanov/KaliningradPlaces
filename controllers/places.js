@@ -78,6 +78,12 @@ module.exports.updatePlace = async (req, res, next) => {
 //* Delete place
 module.exports.deletePlace = async (req, res, next) => {
   const { id } = req.params;
+  const findPlace = await Place.findById(id);
+  if (findPlace.images) {
+    for (const image of findPlace.images) {
+      await cloudinary.uploader.destroy(image.filename);
+    }
+  }
   await Place.findByIdAndDelete(id);
   req.flash("success", "Success your delete place");
   res.redirect("/places");
