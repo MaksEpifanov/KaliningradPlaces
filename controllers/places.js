@@ -1,7 +1,9 @@
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const Place = require("../models/place");
 const { cloudinary } = require("../cloudinary");
 
-// TODO mapbox geocoding
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 //* Show all places
 module.exports.index = async (req, res, next) => {
@@ -14,17 +16,19 @@ module.exports.renderNewForm = (req, res, next) => {
   res.render("places/create", { title: "Create new place" });
 };
 module.exports.createPlace = async (req, res, next) => {
-  // TODO add geoData with geocoding
-
+  const geoData = await geocoder
+    .forwardGeocode({
+      query: req.body.place.location,
+      limit: 1,
+    })
+    .send();
   const place = new Place(req.body.place);
+  place.geometry = geoData.body.features[0].geometry;
   place.images = req.files.map((file) => ({
     url: file.path,
     filename: file.filename,
   }));
   place.author = req.user._id;
-
-  // TODO place.geometry add
-
   await place.save();
   req.flash("success", "Success your create new place");
   res.redirect(`places/${place._id}`);
