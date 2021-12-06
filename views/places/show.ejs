@@ -1,6 +1,12 @@
 <%- layout('layout/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/starability.css" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+<link
+  href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
+  rel="stylesheet"
+/>
 <div class="row">
+  <div id="map" style="width: 100%; height: 500px"></div>
   <div class="col-4 offset-1">
     <h3><%= place.title %></h3>
     <div class="place">
@@ -96,3 +102,9 @@
   <p class="list-group-item">no reviews</p>
   <% } %>
 </div>
+
+<script>
+  const mbToken = '<%- process.env.MAPBOX_TOKEN %>'
+  const place = <%- JSON.stringify(place) %>
+</script>
+<script src="/javascripts/mapShow.js"></script>
