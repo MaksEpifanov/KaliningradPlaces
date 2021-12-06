@@ -5,6 +5,7 @@ module.exports.scriptSrcUrls = [
   "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net",
+  "http://localhost:35729",
 ];
 module.exports.styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
@@ -20,6 +21,11 @@ module.exports.connectSrcUrls = [
   "https://a.tiles.mapbox.com/",
   "https://b.tiles.mapbox.com/",
   "https://events.mapbox.com/",
+  "ws://localhost:35729",
+];
+module.exports.imagesSrcUrls = [
+  "https://res.cloudinary.com/dr0eioqqm/", // SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+  "https://images.unsplash.com/",
 ];
 
 module.exports.fontSrcUrls = [];

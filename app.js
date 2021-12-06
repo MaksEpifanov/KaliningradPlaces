@@ -17,6 +17,11 @@ const LocalStrategy = require("passport-local");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 
+//* Dev livereload
+const livereload = require("livereload");
+const connectLiveReload = require("connect-livereload");
+const helmetSrc = require("./utils/helmetSrs");
+
 const User = require("./models/user");
 
 //* connect mongoose mongoDB
@@ -34,7 +39,15 @@ const reviewsRouter = require("./routes/reviews");
 const authenticationRouter = require("./routes/authentication");
 const profilesRouter = require("./routes/profiles");
 
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 50);
+});
+
 const app = express();
+app.use(connectLiveReload());
 
 //* view engine setup
 app.engine("ejs", engine);
@@ -63,31 +76,17 @@ app.use(
 );
 app.use(flash());
 app.use(helmet());
-
-const {
-  connectSrcUrls,
-  scriptSrcUrls,
-  styleSrcUrls,
-  fontSrcUrls,
-} = require("./utils/helmetSrs");
-
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [],
-      connectSrc: ["'self'", ...connectSrcUrls],
-      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      connectSrc: ["'self'", ...helmetSrc.connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...helmetSrc.scriptSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", ...helmetSrc.styleSrcUrls],
       workerSrc: ["'self'", "blob:"],
       objectSrc: [],
-      imgSrc: [
-        "'self'",
-        "blob:",
-        "data:",
-        "https://res.cloudinary.com/dr0eioqqm/", // SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
-        "https://images.unsplash.com/",
-      ],
-      fontSrc: ["'self'", ...fontSrcUrls],
+      imgSrc: ["'self'", "blob:", "data:", ...helmetSrc.imagesSrcUrls],
+      fontSrc: ["'self'", ...helmetSrc.fontSrcUrls],
     },
   })
 );

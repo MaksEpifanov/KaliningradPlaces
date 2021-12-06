@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon -e js,ejs"
   },
   "author": "Maks Klimov",
   "license": "MIT",
@@ -33,8 +33,10 @@
     "passport-local-mongoose": "^6.1.0"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.1",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3"
+    "eslint-plugin-import": "^2.25.3",
+    "livereload": "^0.9.3"
   }
 }
