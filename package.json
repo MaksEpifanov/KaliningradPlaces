@@ -1,10 +1,13 @@
 {
   "name": "kaliningradplace",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
+  "author": "Maks Klimov",
+  "license": "MIT",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.13.2",
     "cloudinary": "^1.27.1",

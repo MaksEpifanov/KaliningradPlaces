@@ -5,8 +5,8 @@ mapboxgl.accessToken = mbToken;
 const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/dark-v10",
-  center: [-103.5917, 40.6699],
-  zoom: 3,
+  center: [21.389228, 54.753974],
+  zoom: 7,
 });
 
 map.on("load", () => {
