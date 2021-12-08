@@ -1,24 +1,42 @@
 <%- layout('layout/boilerplate') %>
-<div class="row">
-  <div class="col-6">
-    <h4>Create account</h4>
-    <form action="/register" method="POST" class="validated-form" novalidate>
-      <div class="mb-3">
-        <label class="form-label" for="username">Name:</label>
-        <input class="form-control" type="text" name="username" id="username" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="email">Email:</label>
-        <input class="form-control" type="email" name="email" id="email" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="password">Password:</label>
-        <input class="form-control" type="password" name="password" id="password" required>
-      </div>
-      <button class="btn btn-success">Sign In</button>
-    </form>
-  </div>
-  <div class="col-6">
-    
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h4>Create account</h4>
+      <form action="/register" method="POST" class="validated-form" novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="username">Name:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="username"
+            id="username"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="email">Email:</label>
+          <input
+            class="form-control"
+            type="email"
+            name="email"
+            id="email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password">Password:</label>
+          <input
+            class="form-control"
+            type="password"
+            name="password"
+            id="password"
+            required
+          />
+        </div>
+        <button class="btn btn-success">Sign In</button>
+      </form>
+    </div>
+    <div class="col-6"></div>
   </div>
 </div>

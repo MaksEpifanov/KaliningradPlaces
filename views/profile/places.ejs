@@ -1,24 +1,28 @@
 <%- layout('layout/boilerplate') %>
-<h2>All places <%= profile.username %></h2>
-<div class="row">
-  <% for (let place of places) {%>
-  <div class="col-4">
-    <div class="card">
-      <div class="card-body">
-        <% if (place.images[0]) {%>
-        <img src="<%= place.images[0].url %>" alt="" />
-        <% } else {%>
-        <p>Not image</p>
-        <% } %>
-        <h5 class="card-title"><%= place.title %></h5>
-        <p><%= place.location %></p>
-        <a href="/places/<%=place.id%>" class="btn btn-primary">Go somewhere</a>
-        <a href="/places/<%=place.id%>/edit" class="btn btn-primary">Edit</a>
-        <form action="/places/<%= place.id %>?_method=DELETE" method="POST">
-          <button class="btn btn-danger">Delete</button>
-        </form>
+<div class="container">
+  <h2>All places <%= profile.username %></h2>
+  <div class="row">
+    <% for (let place of places) {%>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <% if (place.images[0]) {%>
+          <img src="<%= place.images[0].url %>" alt="" />
+          <% } else {%>
+          <p>Not image</p>
+          <% } %>
+          <h5 class="card-title"><%= place.title %></h5>
+          <p><%= place.location %></p>
+          <a href="/places/<%=place.id%>" class="btn btn-primary"
+            >Go somewhere</a
+          >
+          <a href="/places/<%=place.id%>/edit" class="btn btn-primary">Edit</a>
+          <form action="/places/<%= place.id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
       </div>
     </div>
+    <% } %>
   </div>
-  <% } %>
 </div>

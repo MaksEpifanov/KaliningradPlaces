@@ -7,17 +7,14 @@
     <link rel="shortcut icon" href="/images/fav_ico.svg" type="image/x-icon" />
 
     <link rel="stylesheet" href="/stylesheets/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
 
     <title><%= title %></title>
   </head>
 
-  <body class="d-flex flex-column vh-100 bg-light">
-    <main class="container">
-      <%- include('../partials/navbar') %>
-      <div class="col-4 offset-4"><%- include('../partials/flash')%></div>
-      <%- body -%>
-    </main>
-    <%- include('../partials/footer')%>
+  <body class="d-flex flex-column bg-light">
+    <%- include('../partials/navbar') %> <%- body -%> <%-
+    include('../partials/footer')%>
     <script src="/javascripts/bootstrap/bootstrap.min.js"></script>
   </body>
 </html>

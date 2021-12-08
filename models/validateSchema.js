@@ -1,5 +1,5 @@
 const BaseJoi = require("joi");
-const createError = require("http-errors");
+const CreateError = require("http-errors");
 const sanitizeHtml = require("sanitize-html");
 
 const extansion = (joi) => ({
@@ -30,16 +30,21 @@ module.exports.validatePlace = (req, res, next) => {
   const placeValidateSchema = Joi.object({
     place: Joi.object({
       title: Joi.string().required().escapeHTML(),
-      // img: Joi.string(),
+      // images: Joi.array(Joi.object().required()),
       description: Joi.string().escapeHTML(),
-      location: Joi.string().escapeHTML(),
+      location: Joi.string().required().escapeHTML(),
     }).required(),
     deleteImages: Joi.array(),
   });
-  const { error } = placeValidateSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map((el) => el.message).join(",");
-    throw new createError(400, msg);
+  const imageValidateSchema = Joi.array().items(Joi.object().required());
+
+  const validPlace = placeValidateSchema.validate(req.body);
+  const validImage = imageValidateSchema.validate(req.files);
+  if (validPlace.error) {
+    const msg = validPlace.error.details.map((el) => el.message).join(",");
+    throw new CreateError(400, msg);
+  } else if (validImage.error) {
+    throw new CreateError(400, "Images is required");
   } else {
     next();
   }
@@ -55,7 +60,7 @@ module.exports.validateReview = (req, res, next) => {
   const { error } = reviewValidateSchema.validate(req.body);
   if (error) {
     const msg = error.details.map((el) => el.message).join(",");
-    throw new createError(400, msg);
+    throw new CreateError(400, msg);
   } else {
     next();
   }
