@@ -30,20 +30,24 @@ module.exports.validatePlace = (req, res, next) => {
   const placeValidateSchema = Joi.object({
     place: Joi.object({
       title: Joi.string().required().escapeHTML(),
-      // images: Joi.array(Joi.object().required()),
       description: Joi.string().escapeHTML(),
       location: Joi.string().required().escapeHTML(),
     }).required(),
     deleteImages: Joi.array(),
   });
-  const imageValidateSchema = Joi.array().items(Joi.object().required());
-
-  const validPlace = placeValidateSchema.validate(req.body);
-  const validImage = imageValidateSchema.validate(req.files);
-  if (validPlace.error) {
-    const msg = validPlace.error.details.map((el) => el.message).join(",");
+  const { error } = placeValidateSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(",");
     throw new CreateError(400, msg);
-  } else if (validImage.error) {
+  } else {
+    next();
+  }
+};
+
+module.exports.validateCreatePlaceImages = (req, res, next) => {
+  const imageValidateSchema = Joi.array().items(Joi.object().required());
+  const { error } = imageValidateSchema.validate(req.files);
+  if (error) {
     throw new CreateError(400, "Images is required");
   } else {
     next();

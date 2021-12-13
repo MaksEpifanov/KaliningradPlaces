@@ -6,7 +6,10 @@ const { storage } = require("../cloudinary");
 
 const upload = multer({ storage });
 const { isLoggedIn, isPlaceAuthor } = require("../middleware");
-const { validatePlace } = require("../models/validateSchema");
+const {
+  validatePlace,
+  validateCreatePlaceImages,
+} = require("../models/validateSchema");
 const places = require("../controllers/places");
 const catchAsync = require("../utils/catchAsync");
 
@@ -17,6 +20,7 @@ router
     isLoggedIn,
     upload.array("image"),
     validatePlace,
+    validateCreatePlaceImages,
     catchAsync(places.createPlace)
   );
 
@@ -29,6 +33,7 @@ router
     isLoggedIn,
     isPlaceAuthor,
     upload.array("image"),
+    validatePlace,
     catchAsync(places.updatePlace)
   )
   .delete(isLoggedIn, isPlaceAuthor, catchAsync(places.deletePlace));
@@ -39,6 +44,5 @@ router.get(
   isPlaceAuthor,
   catchAsync(places.renderEditForm)
 );
-// TODO protect this rout
 
 module.exports = router;
