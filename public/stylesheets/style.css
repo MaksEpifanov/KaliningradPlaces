@@ -36,3 +36,30 @@ div.side-url__home {
 div.side-url__about {
   background-image: url(../images/about/about.jpg);
 }
+
+.card-box {
+  box-shadow: 6px 6px 12px rgba(183, 183, 174, 0.2),
+    -6px -6px 12px rgba(183, 183, 174, 0.2),
+    6px -6px 12px rgba(255, 255, 255, 0.9),
+    -6px 6px 15px rgba(183, 183, 174, 0.9),
+    inset -1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 1px -1px 2px rgba(183, 183, 174, 0.5);
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+.card-box:hover {
+  box-shadow: 14px 14px 28px rgba(183, 183, 174, 0.2),
+    -14px -14px 28px rgba(183, 183, 174, 0.2),
+    14px -14px 28px rgba(255, 255, 255, 0.9),
+    -14px 14px 35px rgba(183, 183, 174, 0.9),
+    inset -1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 1px -1px 2px rgba(183, 183, 174, 0.5);
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}

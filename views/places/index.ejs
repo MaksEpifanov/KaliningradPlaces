@@ -7,27 +7,53 @@
 <div class="container-fluid">
   <div
     id="map"
-    style="width: 100%; height: 500px"
+    style="width: 100%; height: 350px"
     class="side-border-radius mb-2"
   ></div>
 </div>
 
 <div class="container">
   <div class="row">
+    <div class="col-6 offset-3 p-4">
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <!-- <button class="btn btn-dark" type="submit">Search</button> -->
+      </form>
+    </div>
+  </div>
+  <div class="row px-5">
     <% for (let place of places) {%>
-    <div class="col-4">
-      <div class="card">
+    <div class="col p-4">
+      <div
+        class="card bg-secondary border-0 side-border-radius card-box"
+        style="max-width: 26rem; min-width: 22rem"
+      >
         <div class="card-body">
           <% if (place.images[0]) {%>
-          <img src="<%= place.images[0].url %>" alt="" />
+          <div
+            class="card-body side-image side-border-radius"
+            style="
+              background-image: url(<%= place.images[0].thumbnail %>);
+              min-height: 22rem;
+            "
+          ></div>
           <% } else {%>
-          <p>No image</p>
+          <div class="card-body side-border-radius" style="min-height: 22rem">
+            <p>No Images</p>
+          </div>
           <% } %>
-          <h5 class="card-title"><%= place.title %></h5>
-          <p><%= place.location %></p>
-          <a href="/places/<%=place.id%>" class="btn btn-primary"
-            >Go somewhere</a
-          >
+          <h5 class="card-title text-center py-3 h4"><%= place.title %></h5>
+          <div class="d-flex justify-content-between">
+            <p><%= place.location %></p>
+            <a href="/places/<%=place.id%>" class="btn btn-dark px-5"
+              >View place</a
+            >
+          </div>
         </div>
       </div>
     </div>
