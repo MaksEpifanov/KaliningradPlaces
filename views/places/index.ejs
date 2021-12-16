@@ -14,7 +14,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-6 offset-3 p-4">
+    <div class="col-6 offset-3 py-4">
       <form class="d-flex">
         <input
           class="form-control me-2"
@@ -22,16 +22,16 @@
           placeholder="Search"
           aria-label="Search"
         />
-        <!-- <button class="btn btn-dark" type="submit">Search</button> -->
+        <!-- <button overflow cssclass="btn btn-dark" type="submit">Search</button> -->
       </form>
     </div>
   </div>
-  <div class="row px-5">
+  <div class="row g-5">
     <% for (let place of places) {%>
-    <div class="col p-4">
+    <div class="col">
       <div
         class="card bg-secondary border-0 side-border-radius card-box"
-        style="max-width: 26rem; min-width: 22rem"
+        style="max-width: 24rem; min-width: 18rem"
       >
         <div class="card-body">
           <% if (place.images[0]) {%>
@@ -48,9 +48,16 @@
           </div>
           <% } %>
           <h5 class="card-title text-center py-3 h4"><%= place.title %></h5>
-          <div class="d-flex justify-content-between">
-            <p><%= place.location %></p>
-            <a href="/places/<%=place.id%>" class="btn btn-dark px-5"
+          <div class="d-flex justify-content-between align">
+            <p
+              class="my-auto ms-2 pe-2 text-nowrap overflow-hidden"
+              style="text-overflow: ellipsis"
+            >
+              <%= place.location %>
+            </p>
+            <a
+              href="/places/<%=place.id%>"
+              class="btn btn-dark px-4 me-2 text-nowrap"
               >View place</a
             >
           </div>
