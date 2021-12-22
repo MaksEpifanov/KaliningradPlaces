@@ -18,8 +18,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 
 //* Dev livereload
-const livereload = require("livereload");
-const connectLiveReload = require("connect-livereload");
 const helmetSrc = require("./utils/helmetSrs");
 
 const User = require("./models/user");
@@ -39,15 +37,7 @@ const reviewsRouter = require("./routes/reviews");
 const authenticationRouter = require("./routes/authentication");
 const profilesRouter = require("./routes/profiles");
 
-const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 50);
-});
-
 const app = express();
-app.use(connectLiveReload());
 
 //* view engine setup
 app.engine("ejs", engine);

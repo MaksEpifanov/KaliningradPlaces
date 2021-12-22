@@ -7,7 +7,17 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 //* Show all places
 module.exports.index = async (req, res, next) => {
-  const places = await Place.find({});
+  //* pagination
+  const page = parseInt(req.query.page);
+  const limit = 9;
+  const skipIndex = (page - 1) * limit;
+  const places = await Place.find()
+    .sort({ _id: 1 })
+    .limit(limit)
+    .skip(skipIndex)
+    .exec();
+  places.lastPage = Math.ceil((await Place.countDocuments({})) / limit);
+  places.currentPage = page;
   res.render("places/index", { places, title: "All places in Kaliningrad" });
 };
 

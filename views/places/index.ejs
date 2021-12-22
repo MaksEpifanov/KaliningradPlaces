@@ -1,70 +1,105 @@
 <%- layout('layout/boilerplate') -%>
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
-<link
-  href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
-  rel="stylesheet"
-/>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet"/>
 <div class="container-fluid">
-  <div
-    id="map"
-    style="width: 100%; height: 350px"
-    class="side-border-radius mb-2"
-  ></div>
+  <div id="map" style="width: 100%; height: 350px" class="side-border-radius mb-2"></div>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-6 offset-3 py-4">
       <form class="d-flex">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <!-- <button overflow cssclass="btn btn-dark" type="submit">Search</button> -->
       </form>
     </div>
   </div>
-  <div class="row g-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center g-5">
     <% for (let place of places) {%>
-    <div class="col">
-      <div
-        class="card bg-secondary border-0 side-border-radius card-box"
-        style="max-width: 24rem; min-width: 18rem"
-      >
-        <div class="card-body">
-          <% if (place.images[0]) {%>
-          <div
-            class="card-body side-image side-border-radius"
-            style="
-              background-image: url(<%= place.images[0].thumbnail %>);
-              min-height: 22rem;
-            "
-          ></div>
-          <% } else {%>
-          <div class="card-body side-border-radius" style="min-height: 22rem">
-            <p>No Images</p>
-          </div>
-          <% } %>
-          <h5 class="card-title text-center py-3 h4"><%= place.title %></h5>
-          <div class="d-flex justify-content-between align">
-            <p
-              class="my-auto ms-2 pe-2 text-nowrap overflow-hidden"
-              style="text-overflow: ellipsis"
-            >
-              <%= place.location %>
-            </p>
-            <a
-              href="/places/<%=place.id%>"
-              class="btn btn-dark px-4 me-2 text-nowrap"
-              >View place</a
-            >
+      <div class="col">
+        <div class="card bg-secondary border-0 side-border-radius card-box"> <!--style="max-width: 24rem; min-width: 18rem -->
+          <div class="card-body">
+            <% if (place.images[0]) {%>
+            <div class="card-body side-image side-border-radius" 
+                style="background-image: url(<%= place.images[0].thumbnail %>); min-height: 22rem">
+            </div>
+            <% } else {%>
+            <div class="card-body side-border-radius" style="min-height: 22rem">
+              <p>No Images</p>
+            </div>
+            <% } %>
+            <h5 class="card-title text-center py-3 h4"><%= place.title %></h5>
+            <div class="d-flex justify-content-between align">
+              <p class="my-auto ms-2 pe-2 text-nowrap overflow-hidden" style="text-overflow: ellipsis">
+                <%= place.location %>
+              </p>
+              <a href="/places/<%=place.id%>" class="btn btn-dark px-4 me-2 text-nowrap">View place</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     <% } %>
+  </div>
+  <div class="row mt-5">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <% if (places.currentPage === 1) { %>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1"><%= 1 %></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="/places?page=2">2</a></li>
+          <li class="page-item"><a class="page-link" href="/places?page=3">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="/places?page=2" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        <% } else if (places.currentPage === places.lastPage) { %>
+          <li class="page-item">
+            <a class="page-link" href="/places?page=<%= places.lastPage - 1 %>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="/places?page=<%= places.lastPage - 2 %>"><%= places.lastPage - 2 %></a></li>
+          <li class="page-item"><a class="page-link" href="/places?page=<%= places.lastPage - 1 %>"><%= places.lastPage - 1 %></a></li>
+          <li class="page-item disabled">
+            <a class="page-link" href="/places?page=<%= places.lastPage %>" tabindex="-1"><%= places.lastPage %></a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        <% } else { %>
+          <li class="page-item">
+            <a class="page-link" href="/places?page=<%= places.currentPage - 1 %>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <% for (let i = places.currentPage - 1; i <= places.currentPage + 1; i++) { %> 
+            <% if (places.currentPage === i ) {%>
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1"><%= i %></a>
+              </li>
+            <% } else {%> 
+              <li class="page-item">
+                <a class="page-link" href="places?page=<%= i %>"><%= i %></a>
+              </li>
+            <% } %> 
+          <% } %>
+          <li class="page-item">
+            <a class="page-link" href="/places?page=<%= places.currentPage + 1 %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
   </div>
 </div>
 
