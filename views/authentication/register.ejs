@@ -1,42 +1,38 @@
 <%- layout('layout/boilerplate') %>
 <div class="container">
-  <div class="row">
-    <div class="col-6">
-      <h4>Create account</h4>
-      <form action="/register" method="POST" class="validated-form" novalidate>
-        <div class="mb-3">
-          <label class="form-label" for="username">Name:</label>
-          <input
-            class="form-control"
-            type="text"
-            name="username"
-            id="username"
-            required
-          />
+  <div class="row row-cols-1 row-cols-md-2 border border-dark border-5 bg-dark side-border-radius box-size">
+    <div class="col p-4 p-md-5 bg-white side-border-radius">
+      <form action="/register" method="POST" class="validated-form d-flex flex-column justify-content-evenly h-100" novalidate>
+        <h4 class="display-6 fw-bold">Create account</h4>
+        <div>
+          <div class="mb-3">
+            <label class="form-label" for="username">Name:</label>
+            <input class="form-control py-2" type="text" name="username" id="username" required/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-control py-2" type="email" name="email" id="email" required/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-control py-2" type="password" name="password" id="password" required/>
+          </div>
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="email">Email:</label>
-          <input
-            class="form-control"
-            type="email"
-            name="email"
-            id="email"
-            required
-          />
+        <div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-dark py-3 fw-bold">Sign In</button>
+          </div>
+          <p class="fs-7 text-center mt-3 text-muted">Already have an account? <a href="/login" class="card-link text-decoration-none">Log in</a></p>
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="password">Password:</label>
-          <input
-            class="form-control"
-            type="password"
-            name="password"
-            id="password"
-            required
-          />
-        </div>
-        <button class="btn btn-success">Sign In</button>
       </form>
     </div>
-    <div class="col-6"></div>
+    <div class="col d-none d-md-flex h-100 p-5 flex-column justify-content-center">
+      <h4 class="display-4 fw-bold text-white">Welcome to our community</h4>
+      <p class="text-white fs-5 mt-4">Create an account to find / share your best moment and get full access to the platform's features.</p>
+      <div class="text-white d-flex align-items-center">
+        <img src="/images/register/users.png" alt="users">
+        <p class="m-0"> 1k+ property lovers joined us, now it’s your turn</p>
+      </div>
+    </div>
   </div>
 </div>
