@@ -18,7 +18,10 @@ module.exports.index = async (req, res, next) => {
     .exec();
   places.lastPage = Math.ceil((await Place.countDocuments({})) / limit);
   places.currentPage = page;
-  res.render("places/index", { places, title: "All places in Kaliningrad" });
+  res.render("places/index", {
+    places,
+    title: "All places in Kaliningrad",
+  });
 };
 
 //* Create new place

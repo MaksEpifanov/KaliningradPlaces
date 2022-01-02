@@ -1,7 +1,9 @@
 const User = require("../models/user");
 
 module.exports.renderRegisterForm = (req, res) => {
-  res.render("authentication/register", { title: "Register new user" });
+  res.render("authentication/register", {
+    title: "Register new user",
+  });
 };
 module.exports.registerNewUser = async (req, res) => {
   try {
@@ -25,7 +27,7 @@ module.exports.registerNewUser = async (req, res) => {
 };
 
 module.exports.renderLoginForm = (req, res) => {
-  res.render("authentication/login", { title: "Login" });
+  res.render("authentication/login", { title: "Login", activePage: "Login" });
 };
 module.exports.loginUser = async (req, res, next) => {
   req.flash("success", "Welcome back!");
