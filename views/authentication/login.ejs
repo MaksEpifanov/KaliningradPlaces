@@ -1,31 +1,28 @@
 <%- layout('layout/boilerplate') %>
 <div class="container">
-  <div class="row">
-    <div class="col-6"></div>
-    <div class="col-6">
-      <form action="/login" method="POST" class="validated-form" novalidate>
-        <div class="mb-3">
-          <label class="form-label" for="username">Name:</label>
-          <input
-            class="form-control"
-            type="text"
-            name="username"
-            id="username"
-            required
-          />
+  <div class="row row-cols-1 row-cols-md-2 border border-dark border-5 side-border-radius box-size">
+    <div class="col p-4 p-md-5 bg-white side-border-radius">
+      <form action="/login" method="POST" class="validated-form d-flex flex-column justify-content-evenly h-100" novalidate>
+        <h4 class="display-6 fw-bold">Welcome back</h4>
+        <div>
+          <p class="fs-6 text-muted">Please Log in to your account.</p>
+          <div class="mb-3">
+            <label class="form-label" for="username">Name:</label>
+            <input class="form-control py-2" type="text" name="username" id="username" required/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-control py-2" type="password" name="password" id="password" required/>
+          </div>
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="password">Password:</label>
-          <input
-            class="form-control"
-            type="password"
-            name="password"
-            id="password"
-            required
-          />
+        <div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-dark py-3 fw-bold">Log In</button>
+          </div>
+          <p class="fs-7 text-center mt-3 text-muted">New here? <a href="/register" class="card-link text-decoration-none">Create an account</a></p>
         </div>
-        <button class="btn btn-dark">Login</button>
       </form>
     </div>
+    <div class="col d-none d-md-flex h-100 p-5 flex-column justify-content-center side-url__login side-image"></div>
   </div>
 </div>
