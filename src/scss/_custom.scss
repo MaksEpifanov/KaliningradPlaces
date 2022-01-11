@@ -1,3 +1,9 @@
+.side-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .side-border-radius {
   border-radius: 1.2rem;
   -webkit-border-radius: 1.2rem;
@@ -6,16 +12,6 @@
   -o-border-radius: 1.2rem;
 }
 
-.side-image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 1rem;
-  -webkit-border-radius: 1rem;
-  -moz-border-radius: 1rem;
-  -ms-border-radius: 1rem;
-  -o-border-radius: 1rem;
-}
 div.box-size {
   height: 75vh;
 }
