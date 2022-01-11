@@ -7,15 +7,15 @@ const catchAsync = require("../utils/catchAsync");
 
 router.get(
   "/:id",
-  isLoggedIn,
-  isProfileAuthor,
+  // isLoggedIn,
+  // isProfileAuthor,
   catchAsync(profiles.renderProfilePage)
 );
 
 router.get(
   "/:id/places",
-  isLoggedIn,
-  isProfileAuthor,
+  // isLoggedIn,
+  // isProfileAuthor,
   catchAsync(profiles.renderProfilePlaces)
 );
 

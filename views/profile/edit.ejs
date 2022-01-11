@@ -1,10 +1,52 @@
-<%- layout('layout/boilerplate') %> <% if (!profile.imageUrl) {%>
+<%- layout('layout/boilerplate') %>
 <div class="container">
-  <img src="/images/defaultUser.svg" alt="default user image" />
-  <% } else {%>
-  <img src="<%= profile.imageUrl %>" alt="profile image" />
-  <% } %>
-  <h1><%= profile.username %></h1>
-  <h2><%= profile.email %></h2>
-  <a href="/p/<%= profile._id %>/places" class="btn btn-primary">All places</a>
+  <div class="row bg-primary box-sizes side-border-radius box-shadow">
+    <div class="col-12 col-md-3 py-md-5 ps-md-4 py-2">
+
+      <%- partial('partials/profilenav')  %> 
+      
+    </div>
+    <div class="col-12 col-md-9 py-5 bg-white side-border-radius">
+      <form action="/#" method="POST" class="validated-form d-flex flex-column justify-content-evenly h-100 px-2 px-md-3" novalidate>
+        <h4 class="display-6 fw-bold text-center">Edit profile</h4>
+        <% if(!profile.imageUrl) {%>
+          <div class="text-center my-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+          </div>
+        <% } else {%>
+        <img src="<%= profile.imageUrl %>" alt="profile image" />
+        <% } %>
+        <div>
+          <div class="mb-3">
+            <label class="form-label" for="username">Name:</label>
+            <input class="form-control py-2" disabled type="text" id="username" value="<%= profile.username %>"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-control py-2" type="email" id="email" disabled value="<%= profile.email %> "/>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="password">First name:</label>
+                <input class="form-control py-2" type="text" name="firstname" id="firstname" value="<%= profile.firstname ?? "" %>" required/>    
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="password">Last name:</label>
+                <input class="form-control py-2" type="text" name="lastname" id="lastname" value="<%= profile.lastname ?? ""  %>" required/>    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-dark py-3 fw-bold">Update</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
