@@ -2,6 +2,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  &__right {
+    background-size: contain;
+    background-position: right;
+  }
 }
 
 .side-border-radius {
