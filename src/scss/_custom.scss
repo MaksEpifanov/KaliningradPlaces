@@ -16,7 +16,8 @@
   -o-border-radius: 1.2rem;
 }
 
-div.box-size {
+.box-size {
+  max-height: 900px;
   height: 75vh;
 }
 
