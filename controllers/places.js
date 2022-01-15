@@ -103,5 +103,5 @@ module.exports.deletePlace = async (req, res, next) => {
   }
   await Place.findByIdAndDelete(id);
   req.flash("success", "Success your delete place");
-  res.redirect("/places");
+  res.redirect(`/p/${req.user._id}/places`);
 };
