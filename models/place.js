@@ -50,6 +50,20 @@ PlaceSchema.virtual("properties.popUpMarker").get(function () {
     <p>${this.description.substring(0, 20)}...</p`;
 });
 
+PlaceSchema.pre("save", function (next) {
+  this.title = this.title[0].toUpperCase() + this.title.slice(1);
+  this.description = this.description
+    .trim()
+    .split(".")
+    .map(
+      (sentence) =>
+        sentence && sentence.trim()[0].toUpperCase() + sentence.slice(1)
+    )
+    .join(". ")
+    .trim();
+  next();
+});
+
 PlaceSchema.post("findOneAndDelete", async (doc) => {
   if (doc) {
     await Review.remove({
