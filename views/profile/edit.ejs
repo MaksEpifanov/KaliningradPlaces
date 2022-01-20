@@ -1,12 +1,12 @@
 <%- layout('layout/boilerplate') %>
 <div class="container">
-  <div class="row bg-primary box-sizes side-border-radius box-shadow">
+  <div class="row bg-primary side-border-radius box-shadow">
     <div class="col-12 col-md-3 py-md-5 ps-md-4 py-2">
 
       <%- partial('partials/profilenav')  %> 
       
     </div>
-    <div class="col-12 col-md-9 py-5 bg-white side-border-radius">
+    <div class="col-12 col-md-9 py-5 py-md-3 bg-white side-border-radius box-size">
       <form action="/#" method="POST" class="validated-form d-flex flex-column justify-content-evenly h-100 px-2 px-md-5" novalidate>
         <h4 class="display-6 fw-bold text-center">Edit profile</h4>
         <% if(!profile.imageUrl) {%>

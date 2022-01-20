@@ -1,13 +1,13 @@
 <%- layout('layout/boilerplate') %>
 <div class="container">
-  <div class="row bg-primary box-sizes side-border-radius box-shadow">
+  <div class="row bg-primary side-border-radius box-shadow"s>
     <div class="col-12 col-md-3 py-md-5 ps-md-4 py-2">
 
       <%- partial('partials/profilenav')  %> 
       
     </div>
-    <div class="col-12 col-md-9 bg-white side-border-radius">
-      <h2 class="display-6 mb-4 text-center">All places <%= profile.username %></h2>
+    <div class="col-12 col-md-9 py-5 py-md-3 bg-white side-border-radius box-size">
+      <h2 class="display-6 fw-bold mb-4 text-center">All places <%= profile.username %></h2>
       <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-xl-evenly justify-content-center g-5 mb-5">
         <% for (let place of places) {%>
           <div class="col">
