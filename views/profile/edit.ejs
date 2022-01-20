@@ -6,9 +6,9 @@
       <%- partial('partials/profilenav')  %> 
       
     </div>
-    <div class="col-12 col-md-9 py-5 py-md-3 bg-white side-border-radius box-size">
-      <form action="/#" method="POST" class="validated-form d-flex flex-column justify-content-evenly h-100 px-2 px-md-5" novalidate>
-        <h4 class="display-6 fw-bold text-center">Edit profile</h4>
+    <main class="col-12 col-md-9 py-5 px-md-4 px-lg-5 bg-white side-border-radius">
+      <form action="/#" method="POST" class="validated-form d-flex flex-column justify-content-evenly px-lg-5" novalidate>
+        <h2 class="display-6 fw-bold text-center">Edit profile</h2>
         <% if(!profile.imageUrl) {%>
           <div class="text-center my-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -47,6 +47,6 @@
           </div>
         </div>
       </form>
-    </div>
+    </main>
   </div>
 </div>

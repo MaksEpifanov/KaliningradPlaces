@@ -1,5 +1,6 @@
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const Place = require("../models/place");
+const User = require("../models/user");
 const { cloudinary } = require("../cloudinary");
 
 const mapBoxToken = process.env.MAPBOX_TOKEN;
@@ -25,8 +26,10 @@ module.exports.index = async (req, res, next) => {
 };
 
 //* Create new place
-module.exports.renderNewForm = (req, res, next) => {
-  res.render("places/create", { title: "Create new place" });
+module.exports.renderNewForm = async (req, res, next) => {
+  const id = req.user._id;
+  const profile = await User.findById(id);
+  res.render("places/create", { title: "Create new place", profile });
 };
 module.exports.createPlace = async (req, res, next) => {
   const geoData = await geocoder
