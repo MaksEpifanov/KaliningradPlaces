@@ -1,10 +1,10 @@
 <%- layout('layout/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/starability.css" />
+<link rel="stylesheet" href="/stylesheets/starability.css"/>
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet"/>
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-2 side-border-radius box-shadow p-3">
+<div class="container side-border-radius box-shadow p-3">
 
+  <div class="row row-cols-1 row-cols-md-2">
 <!-- * Image section -->
     <section class="col-md-7 order-md-1">
       <% if (!place.images[1]) {%>
@@ -77,72 +77,84 @@
     </main>
 
 <!-- * Modal reviews -->
-<% //if(currentUser) { %>
-  <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="reviewModalLabel">Leave review</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <% //if(currentUser) { %>
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="reviewModalLabel">Leave review</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form class="mb-3 validated-form" action="/places/<%= id %>/reviews" method="POST" novalidate>
+            <div class="modal-body">  
+                <label class="form-label" for="review">Review:</label>
+                <textarea class="form-control" name="review[body]" id="review" cols="30" rows="8" required></textarea>
+            </div>
+            <div class="modal-footer justify-content-evenly">
+                <fieldset class="starability-basic">
+                  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating."/>
+                  <input type="radio" id="first-rate1" name="review[rating]" value="1"/>
+                  <label for="first-rate1" title="Terrible">1 star</label>
+                  <input type="radio" id="first-rate2" name="review[rating]" value="2"/>
+                  <label for="first-rate2" title="Not good">2 stars</label>
+                  <input type="radio" id="first-rate3" name="review[rating]" value="3"/>
+                  <label for="first-rate3" title="Average">3 stars</label>
+                  <input type="radio" id="first-rate4" name="review[rating]" value="4"/>
+                  <label for="first-rate4" title="Very good">4 stars</label>
+                  <input type="radio" id="first-rate5" name="review[rating]" value="5"/>
+                  <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+              <button type="submit" class="btn btn-primary text-white">Comment</button>
+            </div>
+          </form>
         </div>
-        <form class="mb-3 validated-form" action="/places/<%= id %>/reviews" method="POST" novalidate>
-          <div class="modal-body">  
-              <label class="form-label" for="review">Review:</label>
-              <textarea class="form-control" name="review[body]" id="review" cols="30" rows="8" required></textarea>
-          </div>
-          <div class="modal-footer justify-content-evenly">
-              <fieldset class="starability-basic">
-                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating."/>
-                <input type="radio" id="first-rate1" name="review[rating]" value="1"/>
-                <label for="first-rate1" title="Terrible">1 star</label>
-                <input type="radio" id="first-rate2" name="review[rating]" value="2"/>
-                <label for="first-rate2" title="Not good">2 stars</label>
-                <input type="radio" id="first-rate3" name="review[rating]" value="3"/>
-                <label for="first-rate3" title="Average">3 stars</label>
-                <input type="radio" id="first-rate4" name="review[rating]" value="4"/>
-                <label for="first-rate4" title="Very good">4 stars</label>
-                <input type="radio" id="first-rate5" name="review[rating]" value="5"/>
-                <label for="first-rate5" title="Amazing">5 stars</label>
-              </fieldset>
-            <button type="submit" class="btn btn-primary text-white">Comment</button>
-          </div>
-        </form>
       </div>
     </div>
+  <% //} %>
   </div>
-<% //} %>
 
 <!-- * Reviews section -->
-    <section class="col-12 my-3 order-2">
-      <% if (place.reviews.length) {%> 
-        <% for (let rev of place.reviews) {%>
-          <div class="card mb-3">
-            <div class="card-body">
-              <div class="header-card d-flex justify-content-between">
-                <h6 class="card-title">
-                  <%= rev.author.username[0].toUpperCase() + rev.author.username.slice(1) %>
-                </h6>
-                <% if(currentUser && rev.author.equals(currentUser._id)) { %>
-                  <form action="/places/<%= place._id  %>/reviews/<%= rev._id %>?_method=DELETE" method="POST">
-                    <button class="btn btn-sm btn-danger">X</button>
-                  </form>
-                <% } %>
+  <div class="row row-cols-1 row-cols-md-2">
+    <% if (place.reviews.length) {%> 
+      <% for (let rev of place.reviews) {%>
+        <div class="col-md-6">
+            <div class="card m-4 ms-5 position-relative">
+              <div class="card-body ps-5">
+                <div class="header-card d-flex justify-content-between">
+                  <% if(!rev.author.imageUrl) {%> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle position-absolute start-0 translate-middle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                  <% } else {%>
+                    <!-- TODO currentUser image -->
+                  <% } %>  
+                  <h6 class="card-title">
+                    <%= rev.author.username[0].toUpperCase() + rev.author.username.slice(1) %>
+                  </h6>
+                  <div class="starability-result" data-rating="<%= rev.rating %>">
+                    Rated: <%= rev.rating %> stars
+                  </div>
+                </div>
+                  
+                  <p class="text-muted">Review: <%= rev.body %></p>
+                  <% //if(currentUser && rev.author.equals(currentUser._id)) { %>
+                    <form action="/places/<%= place._id  %>/reviews/<%= rev._id %>?_method=DELETE" method="POST">
+                      <button class="btn btn-sm btn-dark">X</button>
+                    </form>
+                  <% //} %>
               </div>
-              <p class="starability-result" data-rating="<%= rev.rating %>">
-                Rated: <%= rev.rating %> stars
-              </p>
-              <p class="text-muted">Review: <%= rev.body %></p>
             </div>
-          </div>
-        <% } %> 
-      <% } else { %>
-        <p class="list-group-item">no reviews</p>
-      <% } %>
-    </section>
+        </div>
+      <% } %> 
+    <% } else { %>
+      <p class="list-group-item">no reviews</p>
+    <% } %>
+  </div>
+</div>
 
   <script>
     const mbToken = '<%- process.env.MAPBOX_TOKEN %>'
     const place = <%- JSON.stringify(place) %>
   </script>
   <script src="/javascripts/mapShow.js"></script>
-</div>
