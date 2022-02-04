@@ -17,7 +17,6 @@ const LocalStrategy = require("passport-local");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 
-//* Dev livereload
 const helmetSrc = require("./utils/helmetSrs");
 
 const User = require("./models/user");

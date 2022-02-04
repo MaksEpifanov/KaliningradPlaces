@@ -87,7 +87,7 @@
           </div>
           <form class="mb-3 validated-form" action="/places/<%= id %>/reviews" method="POST" novalidate>
             <div class="modal-body">  
-                <label class="form-label" for="review">Review:</label>
+                <!-- <label class="form-label" for="review">Review:</label> -->
                 <textarea class="form-control" name="review[body]" id="review" cols="30" rows="8" required></textarea>
             </div>
             <div class="modal-footer justify-content-evenly">
@@ -118,31 +118,38 @@
     <% if (place.reviews.length) {%> 
       <% for (let rev of place.reviews) {%>
         <div class="col-md-6">
-            <div class="card m-4 ms-5 position-relative">
+            <div class="card m-4 ms-5 position-relative border-1 border-dark">
               <div class="card-body ps-5">
-                <div class="header-card d-flex justify-content-between">
+                <div class="header-card d-flex justify-content-between align-items-center">
                   <% if(!rev.author.imageUrl) {%> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle position-absolute start-0 translate-middle" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle bg-white position-absolute start-0 top-35 translate-middle" viewBox="0 0 16 16">
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                       <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                   <% } else {%>
                     <!-- TODO currentUser image -->
                   <% } %>  
-                  <h6 class="card-title">
+                  <h6 class="card-title fw-bold fs-5 m-0">
                     <%= rev.author.username[0].toUpperCase() + rev.author.username.slice(1) %>
                   </h6>
                   <div class="starability-result" data-rating="<%= rev.rating %>">
                     Rated: <%= rev.rating %> stars
                   </div>
                 </div>
-                  
-                  <p class="text-muted">Review: <%= rev.body %></p>
-                  <% //if(currentUser && rev.author.equals(currentUser._id)) { %>
-                    <form action="/places/<%= place._id  %>/reviews/<%= rev._id %>?_method=DELETE" method="POST">
-                      <button class="btn btn-sm btn-dark">X</button>
+                <div class="line"></div>
+                <div class="d-flex justify-content-between">
+                  <p class="text-muted fs-5"><%= rev.body %></p>
+                  <% if(currentUser && rev.author.equals(currentUser._id)) { %>
+                    <form class="align-self-end" action="/places/<%= place._id  %>/reviews/<%= rev._id %>?_method=DELETE" method="POST">
+                      <button class="btn m-0 p-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                      </button>
                     </form>
-                  <% //} %>
+                  <% } %>
+                </div>
               </div>
             </div>
         </div>

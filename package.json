@@ -36,10 +36,8 @@
     "sanitize-html": "^2.6.0"
   },
   "devDependencies": {
-    "connect-livereload": "^0.6.1",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3",
-    "livereload": "^0.9.3"
+    "eslint-plugin-import": "^2.25.3"
   }
 }
