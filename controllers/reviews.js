@@ -2,7 +2,7 @@ const Places = require("../models/place");
 const Review = require("../models/review");
 
 //* Add review
-module.exports.addReview = async (req, res, next) => {
+module.exports.addReview = async (req, res) => {
   const { id } = req.params;
   const place = await Places.findById(id);
   const review = new Review(req.body.review);
@@ -15,7 +15,7 @@ module.exports.addReview = async (req, res, next) => {
 };
 
 //* Delete review
-module.exports.deleteReview = async (req, res, next) => {
+module.exports.deleteReview = async (req, res) => {
   const { id, reviewId } = req.params;
   await Places.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);

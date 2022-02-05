@@ -5,18 +5,17 @@ module.exports.renderRegisterForm = (req, res) => {
     title: "Register new user",
   });
 };
-module.exports.registerNewUser = async (req, res) => {
+module.exports.registerNewUser = async (req, res, next) => {
   try {
     const { email, username, password } = req.body;
     const user = new User({ email, username });
     const registerUser = await User.register(user, password);
     req.login(registerUser, (err) => {
-      if (err) return next(err);
+      if (err) next(err);
       req.flash("success", "Welcome to Kaliningrade place");
       res.redirect("/places");
     });
   } catch (e) {
-    console.log(e);
     if (e.code === 11000) {
       req.flash("error", "Email is already in use");
     } else {
@@ -29,7 +28,7 @@ module.exports.registerNewUser = async (req, res) => {
 module.exports.renderLoginForm = (req, res) => {
   res.render("authentication/login", { title: "Login", activePage: "Login" });
 };
-module.exports.loginUser = async (req, res, next) => {
+module.exports.loginUser = async (req, res) => {
   req.flash("success", "Welcome back!");
   const redirectUrl = req.session.returnTo || "/places";
   delete req.session.redirectUrl;
