@@ -1,5 +1,11 @@
 const User = require("../models/user");
 
+const nameRegexp =
+  /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/gi;
+const passwordRegexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/gi;
+const emailRegexp =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gi;
+
 module.exports.renderRegisterForm = (req, res) => {
   res.render("authentication/register", {
     title: "Register new user",
@@ -8,6 +14,19 @@ module.exports.renderRegisterForm = (req, res) => {
 module.exports.registerNewUser = async (req, res, next) => {
   try {
     const { email, username, password } = req.body;
+    if (!nameRegexp.test(username)) {
+      throw new Error(
+        "Incorrect name (The name must include letters, numbers, _)"
+      );
+    }
+    if (!emailRegexp.test(email)) {
+      throw new Error("Incorrect email");
+    }
+    if (!passwordRegexp.test(password)) {
+      throw new Error(
+        "Incorrect password (Minimum 6 characters, at least one letter and one number:)"
+      );
+    }
     const user = new User({ email, username });
     const registerUser = await User.register(user, password);
     req.login(registerUser, (err) => {
