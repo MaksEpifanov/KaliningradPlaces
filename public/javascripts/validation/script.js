@@ -8,7 +8,7 @@ window.userData = {};
 const { checkName, checkPassword, checkEmail } = checkField();
 
 //* helpers function
-const { checkUserData } = mainHelpers();
+const { showElement, hideElement, checkUserData } = mainHelpers();
 
 const mainSetup = () => {
   registerForm.addEventListener("input", (e) => {
@@ -30,5 +30,24 @@ const mainSetup = () => {
     //* check all field & enable or disable submit button
     checkUserData(userData);
   });
+
+  //* hide div whith errors (if this div empty)
+  registerForm.addEventListener("focusout", (e) => {
+    if (e.target.tagName !== "INPUT") return;
+    const type = e.target.id;
+    const divErrors = registerForm[type].previousElementSibling;
+
+    hideElement(divErrors)
+
+  });
+
+  //* if the div errors has errors then it visible
+  registerForm.addEventListener("focusin", (e) => {
+    if (e.target.tagName !== "INPUT") return;
+    const type = e.target.id;
+    const divErrors = registerForm[type].previousElementSibling;
+
+    divErrors.innerHTML && showElement(divErrors);
+  })
 };
 mainSetup();

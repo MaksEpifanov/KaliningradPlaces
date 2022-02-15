@@ -5,18 +5,19 @@ const { showErrors, showSuccess } = mainHelpers();
 
 export const checkField = () => {
 
-  //* show error validation or success 
+  //* if validation errors: add class "is-invalid" to input, add erors to divErrors and delete property in global object userData
+  //* else add class "is-valid" to input, add value to userData, clean and hide divErrors.
   const setResult = (field, value, errors) => {
     const input = registerForm[field];
     const divErrors = input.previousElementSibling
     if (errors.length) {
-      input.classList.remove("is-valid");
       input.classList.add("is-invalid")
       showErrors(errors, divErrors)
       delete userData[field]
     } else {
       showSuccess(input)
       userData[field] = value
+      divErrors.innerHTML = ""
       divErrors.hidden = true;
     };
   };
@@ -27,7 +28,7 @@ export const checkField = () => {
   };
 
   const checkPassword = (value) => {
-    const { errors } = validator(value).notEmpty().isPassword();
+    const { errors } = validator(value).notEmpty().isPassword().isPasswordMin();
     setResult("password", value, errors);
   };
 

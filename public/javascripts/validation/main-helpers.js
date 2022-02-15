@@ -12,16 +12,23 @@ export const mainHelpers = () => {
     }
   }
 
+  const showElement = (element) => {
+    element.hidden = false;
+  };
+  const hideElement = (element) => {
+    element.hidden = true;
+  }
+
   //* function show errors
   const showErrors = (errors, element) => {
-    element.hidden = false
+    showElement(element);
     element.innerHTML = `
   <ul>
     ${errors.reduce((html, error) => (html += `<li>${error}</li>`), "")}
   </ul>
 `
     if (!errors.length) {
-      element.hidden = true
+      hideElement(element)
     }
   }
 
@@ -33,7 +40,9 @@ export const mainHelpers = () => {
   return {
     checkUserData,
     showErrors,
-    showSuccess
+    showSuccess,
+    showElement,
+    hideElement
   };
 }
 
