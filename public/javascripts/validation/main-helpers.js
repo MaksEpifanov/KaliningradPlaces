@@ -1,14 +1,15 @@
 export const mainHelpers = () => {
 
+  const btnValidate = document.forms[0].querySelector("button")
   //* check userData global variable & disable or enable submit button form
-  const checkUserData = (data) => {
+  const checkUserData = (data, length) => {
     if (
-      Object.keys(data).length === 3 &&
+      Object.keys(data).length === length &&
       Object.values(data).every((item) => !!(item.trim()) == true)
     ) {
-      btnRegister.disabled = false;
+      btnValidate.disabled = false;
     } else {
-      btnRegister.disabled = true;
+      btnValidate.disabled = true;
     }
   }
 

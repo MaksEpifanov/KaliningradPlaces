@@ -8,16 +8,18 @@
           <p class="fs-6 text-muted">Please Log in to your account.</p>
           <div class="mb-3">
             <label class="form-label" for="username">Name:</label>
-            <input class="form-control py-2" type="text" name="username" id="username" required/>
+            <div class="alert alert-primary" role="alert" hidden></div>
+           <input class="form-control py-2" type="text" name="username" id="username" required/>
           </div>
           <div class="mb-3">
             <label class="form-label" for="password">Password:</label>
+            <div class="alert alert-primary" role="alert" hidden></div>
             <input class="form-control py-2" type="password" name="password" id="password" required/>
           </div>
         </div>
         <div>
           <div class="d-grid gap-2">
-            <button class="btn btn-dark py-3 fw-bold">Log In</button>
+            <button class="btn btn-dark py-3 fw-bold" disabled>Log In</button>
           </div>
           <p class="fs-7 text-center mt-3 text-muted">New here? <a href="/register" class="card-link text-decoration-none">Create an account</a></p>
         </div>
@@ -26,3 +28,4 @@
     <div class="col d-none d-md-flex"></div>
   </div>
 </div>
+<script src="javascripts/validation/script.js" type="module">

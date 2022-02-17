@@ -1,9 +1,10 @@
 import { mainHelpers } from "./main-helpers.js";
 import { checkField } from "./check-field.js";
 
-window.registerForm = document.forms.registerForm;
+window.validationForm = document.forms[0];
 window.userData = {};
 
+const pathName = document.location.pathname;
 //* functions check field in form
 const { checkName, checkPassword, checkEmail } = checkField();
 
@@ -11,7 +12,7 @@ const { checkName, checkPassword, checkEmail } = checkField();
 const { showElement, hideElement, checkUserData } = mainHelpers();
 
 const mainSetup = () => {
-  registerForm.addEventListener("input", (e) => {
+  validationForm.addEventListener("input", (e) => {
     if (e.target.tagName !== "INPUT") return;
     const type = e.target.id;
     const { value } = e.target;
@@ -28,24 +29,27 @@ const mainSetup = () => {
         break;
     }
     //* check all field & enable or disable submit button
-    checkUserData(userData);
+    console.log(pathName)
+
+    pathName == "/register" && checkUserData(userData, 3);
+    pathName == "/login" && checkUserData(userData, 2)
   });
 
   //* hide div whith errors (if this div empty)
-  registerForm.addEventListener("focusout", (e) => {
+  validationForm.addEventListener("focusout", (e) => {
     if (e.target.tagName !== "INPUT") return;
     const type = e.target.id;
-    const divErrors = registerForm[type].previousElementSibling;
+    const divErrors = validationForm[type].previousElementSibling;
 
     hideElement(divErrors)
 
   });
 
   //* if the div errors has errors then it visible
-  registerForm.addEventListener("focusin", (e) => {
+  validationForm.addEventListener("focusin", (e) => {
     if (e.target.tagName !== "INPUT") return;
     const type = e.target.id;
-    const divErrors = registerForm[type].previousElementSibling;
+    const divErrors = validationForm[type].previousElementSibling;
 
     divErrors.innerHTML && showElement(divErrors);
   })
