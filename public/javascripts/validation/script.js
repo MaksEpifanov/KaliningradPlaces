@@ -1,8 +1,14 @@
 import { mainHelpers } from "./main-helpers.js";
 import { checkField } from "./check-field.js";
 
-window.validationForm = document.forms[0];
-window.userData = {};
+
+let validationForm = document.forms[0];
+let userData = {};
+//* global variable
+window.validationForm = validationForm;
+window.userData = userData;
+
+
 
 const pathName = document.location.pathname;
 //* functions check field in form
@@ -29,10 +35,10 @@ const mainSetup = () => {
         break;
     }
     //* check all field & enable or disable submit button
-    console.log(pathName)
+    //* depends on which page you are on
 
     pathName == "/register" && checkUserData(userData, 3);
-    pathName == "/login" && checkUserData(userData, 2)
+    pathName == "/login" && checkUserData(userData, 2);
   });
 
   //* hide div whith errors (if this div empty)
@@ -41,8 +47,7 @@ const mainSetup = () => {
     const type = e.target.id;
     const divErrors = validationForm[type].previousElementSibling;
 
-    hideElement(divErrors)
-
+    hideElement(divErrors);
   });
 
   //* if the div errors has errors then it visible
@@ -52,6 +57,6 @@ const mainSetup = () => {
     const divErrors = validationForm[type].previousElementSibling;
 
     divErrors.innerHTML && showElement(divErrors);
-  })
+  });
 };
 mainSetup();
