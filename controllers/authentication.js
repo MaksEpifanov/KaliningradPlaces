@@ -13,7 +13,13 @@ module.exports.renderRegisterForm = (req, res) => {
 };
 module.exports.registerNewUser = async (req, res, next) => {
   try {
-    const { email, username, password } = req.body;
+    const {
+      email,
+      username,
+      password,
+      firstname = "",
+      lastname = "",
+    } = req.body;
     if (!nameRegexp.test(username)) {
       throw new Error(
         "Incorrect name (The name must include letters, numbers, _)"
@@ -27,7 +33,7 @@ module.exports.registerNewUser = async (req, res, next) => {
         "Incorrect password (Minimum 6 characters, at least one letter and one number:)"
       );
     }
-    const user = new User({ email, username });
+    const user = new User({ email, username, firstname, lastname });
     const registerUser = await User.register(user, password);
     req.login(registerUser, (err) => {
       if (err) next(err);

@@ -17,3 +17,10 @@ module.exports.renderProfilePlaces = async (req, res) => {
     places,
   });
 };
+
+module.exports.updateProfile = async (req, res) => {
+  const { id } = req.params;
+  const profile = await User.findByIdAndUpdate(id, req.body.profile);
+  req.flash("success", "Success your update profile");
+  res.redirect(`/p/${id}`);
+};

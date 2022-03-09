@@ -49,7 +49,7 @@
           <p class="fs-6 text-muted ms-1"><%= place.location %></p>
         </div>
         <div>
-          <% if(place.author.imageUrl) { %> 
+          <% if(place.author && place.author.imageUrl) { %> 
             <!-- TODO author img -->
           <% } else {%> 
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person text-muted" viewBox="0 0 16 16">
@@ -70,7 +70,7 @@
       <p class="fs-6 my-3"><%= place.description %></p>
       <% //if(currentUser) { %>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Add a comment" aria-label="Add a commnet" aria-describedby="button-addon2" data-bs-toggle="modal" data-bs-target="#reviewModal">
+          <input type="text" class="form-control" placeholder="Add a comment" aria-label="Add a comment" aria-describedby="button-addon2" data-bs-toggle="modal" data-bs-target="#reviewModal">
           <button class="btn btn-outline-dark" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#reviewModal">Send</button>
         </div>
       <% //} %> 
