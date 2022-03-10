@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Place = require("../models/place");
+const { cloudinary } = require("../cloudinary");
 
 module.exports.renderProfilePage = async (req, res) => {
   const { id } = req.params;
@@ -21,6 +22,14 @@ module.exports.renderProfilePlaces = async (req, res) => {
 module.exports.updateProfile = async (req, res) => {
   const { id } = req.params;
   const profile = await User.findByIdAndUpdate(id, req.body.profile);
+  if (req.files[0] && profile.image) {
+    await cloudinary.uploader.destroy(profile.image.filename);
+  }
+  profile.image = {
+    url: req.files[0].path,
+    filename: req.files[0].filename,
+  };
+  profile.save();
   req.flash("success", "Success your update profile");
   res.redirect(`/p/${id}`);
 };

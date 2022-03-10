@@ -2,9 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 const multer = require("multer");
-const { storage } = require("../cloudinary");
+const { storagePlace } = require("../cloudinary");
 
-const upload = multer({ storage });
+const upload = multer({ storage: storagePlace });
 const { isLoggedIn, isPlaceAuthor } = require("../middleware");
 const {
   validatePlace,

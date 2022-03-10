@@ -7,7 +7,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-const storage = new CloudinaryStorage({
+const storagePlace = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "KaliningradPlaces",
@@ -19,11 +19,12 @@ const storageUser = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "User",
+    width: 100,
   },
 });
 
 module.exports = {
   cloudinary,
-  storage,
+  storagePlace,
   storageUser,
 };

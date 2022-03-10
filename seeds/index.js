@@ -23,11 +23,19 @@ const seedDB = async () => {
         "Cupidatat consectetur laboris non sit aute nisi pariatur elit ipsum officia laboris consequat nisi ad. Et magna pariatur aliquip laborum reprehenderit laboris ut eu eu nisi aliquip aliquip esse eiusmod. Incididunt sint cillum do laborum deserunt laborum magna esse ut proident fugiat quis. Velit sit ad nostrud sint commodo proident minim reprehenderit proident tempor est. Fugiat exercitation mollit mollit laborum ea. Laboris laborum pariatur sit nulla tempor anim mollit commodo. Elit sint nisi duis ad mollit.",
       images: [
         {
-          url: "https://res.cloudinary.com/dr0eioqqm/image/upload/v1636468790/KgdCamp/xn86mxup9413jfoxpkny.jpg",
-          filename: "KgdCamp/xn86mxup9413jfoxpkny",
+          url: "https://res.cloudinary.com/dr0eioqqm/image/upload/v1646928814/KaliningradPlaces/n4iqguiinlvfrklsn8ml.jpg",
+          filename: "KaliningradPlaces/n4iqguiinlvfrklsn8ml",
         },
         {
-          url: "https://res.cloudinary.com/dr0eioqqm/image/upload/v1636195694/KgdCamp/cm1qxsm0evcb7kd6osv9.jpg",
+          url: "https://res.cloudinary.com/dr0eioqqm/image/upload/v1646928813/KaliningradPlaces/bs881nprol86xpaaga77.jpg",
+          filename: "KaliningradPlaces/bs881nprol86xpaaga77",
+        },
+        {
+          url: "https://res.cloudinary.com/dr0eioqqm/image/upload/v1646928813/KaliningradPlaces/xxy2uaecled29wajgfci.jpg",
+          filename: "KgdCamp/cm1qxsm0evcb7kd6osv9",
+        },
+        {
+          url: "https://res.cloudinary.com/dr0eioqqm/image/upload/v1646928812/KaliningradPlaces/pl1asvgsglqiu6kmwxbd.jpg",
           filename: "KgdCamp/cm1qxsm0evcb7kd6osv9",
         },
       ],

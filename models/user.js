@@ -15,8 +15,9 @@ const UserSchema = new Schema({
   lastname: {
     type: String,
   },
-  imageUrl: {
-    type: String,
+  image: {
+    url: String,
+    filename: String,
   },
 });
 
