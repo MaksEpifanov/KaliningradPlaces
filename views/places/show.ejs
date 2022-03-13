@@ -126,16 +126,20 @@
             <div class="card m-4 ms-5 position-relative border-1 border-dark">
               <div class="card-body ps-5">
                 <div class="header-card d-flex justify-content-between align-items-center">
-                  <% if(!rev.author.imageUrl) {%> 
+                  <% if(!rev.author.image.url) {%> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle bg-white position-absolute start-0 top-35 translate-middle" viewBox="0 0 16 16">
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                       <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                   <% } else {%>
-                    <!-- TODO currentUser image -->
+                    <img class="rounded-circle" src="<%= rev.author.image.url %>" alt="<%= rev.author.username %> photo comment" style="max-height: 50px;">
                   <% } %>  
                   <h6 class="card-title fw-bold fs-5 m-0">
+                    <% if (rev.author.firstname && rev.author.lastname) {%>
+                    <%= rev.author.firstname[0].toUpperCase() + rev.author.firstname.slice(1) + " " + rev.author.lastname[0].toUpperCase() + rev.author.lastname.slice(1)%> 
+                    <% } else {%> 
                     <%= rev.author.username[0].toUpperCase() + rev.author.username.slice(1) %>
+                    <% } %> 
                   </h6>
                   <div class="starability-result" data-rating="<%= rev.rating %>">
                     Rated: <%= rev.rating %> stars
@@ -160,7 +164,7 @@
         </div>
       <% } %> 
     <% } else { %>
-      <p class="list-group-item">no reviews</p>
+      
     <% } %>
   </div>
 </div>
