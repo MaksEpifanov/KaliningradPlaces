@@ -22,7 +22,7 @@ module.exports.renderProfilePlaces = async (req, res) => {
 module.exports.updateProfile = async (req, res) => {
   const { id } = req.params;
   const profile = await User.findByIdAndUpdate(id, req.body.profile);
-  if (req.files[0] && profile.image) {
+  if (req.files[0] && profile.image.url) {
     await cloudinary.uploader.destroy(profile.image.filename);
   }
   profile.image = {

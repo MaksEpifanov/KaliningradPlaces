@@ -1,5 +1,8 @@
 <%- layout('layout/boilerplate') -%>
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+<script>
+  const mbToken = '<%- process.env.MAPBOX_TOKEN %>'
+  const places = {features: <%- JSON.stringify(places) %>}
+</script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet"/>
 <div class="container-fluid">
   <div id="map" style="width: 100%; height: 350px" class="side-border-radius mb-2"></div>
@@ -97,8 +100,6 @@
   </div>
 </div>
 
-<script>
-  const mbToken = '<%- process.env.MAPBOX_TOKEN %>'
-  const places = {features: <%- JSON.stringify(places) %>}
-</script>
-<script src="/javascripts/mapCluster.js"></script>
+
+<script src="/javascripts/mapCluster.js" defer></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>

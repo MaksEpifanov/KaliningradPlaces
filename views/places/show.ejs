@@ -1,9 +1,14 @@
 <%- layout('layout/boilerplate') %>
+<script>
+  const mbToken = '<%- process.env.MAPBOX_TOKEN %>'
+  const place = <%- JSON.stringify(place) %>
+</script>
 <link rel="stylesheet" href="/stylesheets/starability.css"/>
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet"/>
-<div class="container side-border-radius box-shadow p-3">
+<script src="/javascripts/mapShow.js" defer></script>
 
+<div class="container side-border-radius box-shadow p-3">
   <div class="row row-cols-1 row-cols-md-2">
 <!-- * Image section -->
     <section class="col-md-7 order-md-1">
@@ -49,8 +54,8 @@
           <p class="fs-6 text-muted ms-1"><%= place.location %></p>
         </div>
         <div class="d-flex">
-          <% if(place.author.imageUrl) { %> 
-            <!-- TODO author img -->
+          <% if(place.author.image) { %> 
+            <img class="rounded-circle me-2" src="<%= place.author.image.url %> " alt="" width="24px" height="24px">
           <% } else {%> 
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person text-muted" viewBox="0 0 16 16">
               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
@@ -159,9 +164,3 @@
     <% } %>
   </div>
 </div>
-
-  <script>
-    const mbToken = '<%- process.env.MAPBOX_TOKEN %>'
-    const place = <%- JSON.stringify(place) %>
-  </script>
-  <script src="/javascripts/mapShow.js"></script>
