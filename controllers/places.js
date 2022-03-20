@@ -61,6 +61,10 @@ module.exports.showPlace = async (req, res) => {
       },
     })
     .populate("author");
+  console.log(
+    "🚀 ~ file: places.js ~ line 57 ~ module.exports.showPlace= ~ place",
+    place
+  );
   if (!place) {
     req.flash("error", "Not find place");
     res.redirect("/places");

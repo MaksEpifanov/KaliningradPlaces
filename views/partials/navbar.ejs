@@ -28,7 +28,7 @@
         </li>
         <% } else {%>
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle h-25 text-black fw-bold px-3 text-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-primary dropdown-toggle text-black fw-bold px-3 text-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <% if (currentUser.image.url) { %>
               <img class="rounded-circle" src="<%= currentUser.image.url %>" alt="<%= currentUser.username %> photo" style="max-width: 24px; max-height: 24px;">
             <% } else { %> 

@@ -20,13 +20,13 @@
 <!-- * Carousel -->
         <!-- TODO Mod carousel (swiper.js) -->
         <div id="carouselExampleControls" class="carousel slide h-100" data-bs-ride="carousel">
-          <div class="carousel-inner side-border-radius">
-            <div class="carousel-item active">
-              <img src="<%= place.images[0].url %>" class="d-block w-100" alt="1 slide image"/>
+          <div class="carousel-inner ">
+            <div class="carousel-item active side-border-radius">
+              <img src="<%= place.images[0].url %>" class="d-block w-100 " alt="1 slide image" style="max-height: 600px; object-fit: contain;"/>
             </div>
             <% for (let i = 1; i < place.images.length; i++) { %>
-              <div class="carousel-item">
-                <img src="<%= place.images[i].url %>" class="d-block w-100" alt="<%= i %>  slide image"/>
+              <div class="carousel-item side-border-radius">
+                <img src="<%= place.images[i].url %>" class="d-block w-100" alt="<%= i %> slide image" style="max-height: 600px; object-fit: contain;"/>
               </div>
             <% } %>
           </div>
@@ -54,7 +54,7 @@
           <p class="fs-6 text-muted ms-1"><%= place.location %></p>
         </div>
         <div class="d-flex">
-          <% if(place.author.image) { %> 
+          <% if(place.author.image.url) { %> 
             <img class="rounded-circle me-2" src="<%= place.author.image.url %> " alt="" width="24px" height="24px">
           <% } else {%> 
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person text-muted" viewBox="0 0 16 16">

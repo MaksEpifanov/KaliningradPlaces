@@ -17,8 +17,8 @@ module.exports.registerNewUser = async (req, res, next) => {
       email,
       username,
       password,
-      firstname = "",
-      lastname = "",
+      firstname = null,
+      lastname = null,
     } = req.body;
     if (!nameRegexp.test(username)) {
       throw new Error(
