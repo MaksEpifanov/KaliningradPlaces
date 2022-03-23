@@ -23,8 +23,8 @@
         <div class="mb-3">
           <label class="form-label mb-1" for="location">Location</label>
           <div id="map" class="side-border-radius" style="width: 100%; height: 500px"></div>
-          <input class="form-control py-2" type="text" name="place[location[lng]]" value="" id="lng" required/>
-          <input class="form-control py-2" type="text" name="place[location[lat]]" value="" id="lat" required/>
+          <input class="form-control py-2 visually-hidden" type="text" name="place[lng]" value="" id="lng" required/>
+          <input class="form-control py-2 visually-hidden" type="text" name="place[lat]" value="" id="lat" required/>
         </div>
         <div class="input-group mb-3">
           <label class="input-group-text" for="image">Upload image</label>
@@ -32,9 +32,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="description">Description</label>
-          <textarea class="form-control" rows="3" type="text" name="place[description]" id="description" required>
-            
-          </textarea>
+          <textarea class="form-control" rows="3" type="text" name="place[description]" id="description" required></textarea>
         </div>
         <button type="submit" class="btn btn-dark btn-large py-3 px-md-5 fw-bold">Create</button>
       </form>

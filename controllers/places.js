@@ -32,14 +32,17 @@ module.exports.renderNewForm = async (req, res) => {
   res.render("places/create", { title: "Create new place", profile });
 };
 module.exports.createPlace = async (req, res) => {
+  const { lng, lat } = req.body.place;
   const geoData = await geocoder
-    .forwardGeocode({
-      query: req.body.place.location,
+    .reverseGeocode({
+      query: [+lng, +lat],
       limit: 1,
+      types: ["country", "region", "district", "place", "locality", "address"],
     })
     .send();
   const place = new Place(req.body.place);
-  place.geometry = geoData.body.features[0].geometry;
+  place.location = geoData.body.features[0].place_name;
+  place.geometry.coordinates = [+lng, +lat];
   place.images = req.files.map((file) => ({
     url: file.path,
     filename: file.filename,
@@ -61,10 +64,6 @@ module.exports.showPlace = async (req, res) => {
       },
     })
     .populate("author");
-  console.log(
-    "🚀 ~ file: places.js ~ line 57 ~ module.exports.showPlace= ~ place",
-    place
-  );
   if (!place) {
     req.flash("error", "Not find place");
     res.redirect("/places");

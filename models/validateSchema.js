@@ -31,7 +31,8 @@ module.exports.validatePlace = (req, res, next) => {
     place: Joi.object({
       title: Joi.string().required().escapeHTML(),
       description: Joi.string().escapeHTML(),
-      location: Joi.string().required().escapeHTML(),
+      lng: Joi.string().required().escapeHTML(),
+      lat: Joi.string().required().escapeHTML(),
     }).required(),
     deleteImages: Joi.array(),
   });
