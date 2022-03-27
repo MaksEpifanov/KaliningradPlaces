@@ -40,8 +40,8 @@ router
 
 router.get(
   "/:id/edit",
-  isLoggedIn,
-  isPlaceAuthor,
+  // isLoggedIn,
+  //   isPlaceAuthor,
   catchAsync(places.renderEditForm)
 );
 

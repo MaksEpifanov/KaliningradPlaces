@@ -22,8 +22,8 @@ router
 
 router.get(
   "/:id/places",
-  isLoggedIn,
-  isProfileAuthor,
+  // isLoggedIn,
+  // isProfileAuthor,
   catchAsync(profiles.renderProfilePlaces)
 );
 
