@@ -11,7 +11,19 @@ module.exports.renderProfilePage = async (req, res) => {
 module.exports.renderProfilePlaces = async (req, res) => {
   const { id } = req.params;
   const profile = await User.findById(id);
-  const places = await Place.find({ author: id });
+
+  //* pagination
+  const page = parseInt(req.query.page, 10);
+  const limit = 9;
+  const skipIndex = (page - 1) * limit;
+  const places = await Place.find({ author: id })
+    .sort({ _id: 1 })
+    .limit(limit)
+    .skip(skipIndex)
+    .exec();
+  console.log(profile);
+  places.lastPage = Math.ceil((await Place.countDocuments({})) / limit);
+  places.currentPage = page;
   res.render("profile/places", {
     title: `All places ${profile.username}`,
     profile,
