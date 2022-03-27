@@ -1,7 +1,7 @@
 <%- layout('layout/boilerplate') -%>
 <script>
   const mbToken = '<%- process.env.MAPBOX_TOKEN %>'
-  const places = {features: <%- JSON.stringify(places) %>}
+  const allPlaces = {features: <%- JSON.stringify(allPlaces) %>}
 </script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet"/>
 <div class="container-fluid">

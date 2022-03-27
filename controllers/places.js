@@ -12,6 +12,7 @@ module.exports.index = async (req, res) => {
   const page = parseInt(req.query.page, 10);
   const limit = 9;
   const skipIndex = (page - 1) * limit;
+  const allPlaces = await Place.find();
   const places = await Place.find()
     .sort({ _id: 1 })
     .limit(limit)
@@ -21,6 +22,7 @@ module.exports.index = async (req, res) => {
   places.currentPage = page;
   res.render("places/index", {
     places,
+    allPlaces,
     title: "All places in Kaliningrad",
   });
 };
