@@ -1,13 +1,14 @@
 <% if (success.length) { %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <div class="alert alert-success alert-dismissible fade show border border-2 border-dark m-0 py-1 d-none d-lg-block ms-auto overflow-hidden flex-shrink-1" role="alert">
     <%= success %>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  <% } %>
+    <button type="button" class="btn-close py-2" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div> 
+<% } %>
+<% if (error.length) { %>
+  <div class="alert alert-primary alert-dismissible fade show border border-2 border-dark m-0 py-1 d-none d-lg-block ms-auto overflow-hidden flex-shrink-1" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close py-2" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div> 
+<% } %>
 
-    <% if (error.length) { %>
-      <div class=" alert alert-danger alert-dismissible fade show" role="alert">
-        <%= error %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      <% } %>
+<script defer src="/javascripts/flash.js"></script>

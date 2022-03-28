@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item mx-1">
             <a class="nav-link <%= title=== "Kaliningrad Places" && "active" %>" href="/"><strong>Home</strong></a>
         </li>
@@ -18,7 +18,8 @@
             <a class="nav-link <%= title === "About project" && "active" %>" href="/about"><strong>About</strong></a>
         </li>
       </ul>
-      <ul class="navbar-nav align-items-center">
+      <%- partial('partials/flash')%>
+      <ul class="navbar-nav ms-auto align-items-center">
         <% if (!currentUser) { %>
         <li class="nav-item">
             <a href="/register" class="nav-link <%= title === "Register new user" && "active"%>"><strong>Sign Up</strong></a>
@@ -51,9 +52,8 @@
           </ul>
         </div>
         <% } %>
-        
       </ul>
     </div>
+    
   </nav>
-  <div class="col-4 offset-4"><%- partial('partials/flash')%></div>
 </header>
