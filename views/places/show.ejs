@@ -12,13 +12,13 @@
   <div class="row row-cols-1 row-cols-md-2">
 <!-- * Image section -->
     <section class="col-md-7 order-md-1">
-      <% if (!place.images[1]) {%>
+      <% if (place.images.length < 1) {%>
         <div class="">
           <img src="<%= place.images[0].url %>" alt="<%= place.name %> image" class="img-fluid side-border-radius" />
         </div>
       <% } else {%>
 <!-- * Carousel -->
-        <!-- TODO Mod carousel (swiper.js) -->
+<!-- TODO Mod carousel (swiper.js) -->
         <div id="carouselExampleControls" class="carousel slide h-100" data-bs-ride="carousel">
           <div class="carousel-inner ">
             <div class="carousel-item active side-border-radius">
@@ -54,7 +54,7 @@
           <p class="fs-6 text-muted ms-1"><%= place.location %></p>
         </div>
         <div class="d-flex">
-          <% if(place.author.image.url) { %> 
+          <% if(place.author.image?.url) { %> 
             <img class="rounded-circle me-2" src="<%= place.author.image.url %> " alt="" width="24px" height="24px">
           <% } else {%> 
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person text-muted" viewBox="0 0 16 16">
@@ -73,16 +73,16 @@
       <div id="map" class="side-border-radius" style="width: 100%; height: 300px"></div>
 
       <p class="fs-6 my-3"><%= place.description %></p>
-      <% //if(currentUser) { %>
+      <% if(currentUser) { %>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Add a comment" aria-label="Add a comment" aria-describedby="button-addon2" data-bs-toggle="modal" data-bs-target="#reviewModal">
           <button class="btn btn-outline-dark" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#reviewModal">Send</button>
         </div>
-      <% //} %> 
+      <% } %> 
     </main>
 
 <!-- * Modal reviews -->
-  <% //if(currentUser) { %>
+  <% if(currentUser) { %>
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -115,7 +115,7 @@
         </div>
       </div>
     </div>
-  <% //} %>
+  <% } %>
   </div>
 
 <!-- * Reviews section -->
@@ -132,7 +132,9 @@
                       <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                   <% } else {%>
-                    <img class="rounded-circle" src="<%= rev.author.image.url %>" alt="<%= rev.author.username %> photo comment" style="max-height: 50px;">
+                    <div class="position-absolute start-0 top-35 translate-middle">  
+                      <img class="rounded-circle" src="<%= rev.author.image.url %>" alt="<%= rev.author.username %> photo comment" style="max-height: 50px;">
+                    </div>
                   <% } %>  
                   <h6 class="card-title fw-bold fs-5 m-0">
                     <% if (rev.author.firstname && rev.author.lastname) {%>
