@@ -54,7 +54,7 @@ module.exports.renderLoginForm = (req, res) => {
   res.render("authentication/login", { title: "Login", activePage: "Login" });
 };
 module.exports.loginUser = async (req, res) => {
-  const redirectUrl = req.session.returnTo || "/places";
+  const redirectUrl = req.session.returnTo || "/places?page=1";
   delete req.session.redirectUrl;
   res.redirect(redirectUrl);
 };
