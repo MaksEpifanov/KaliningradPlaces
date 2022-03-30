@@ -9,21 +9,22 @@ const catchAsync = require("../utils/catchAsync");
 const { storageUser } = require("../cloudinary");
 const upload = multer({ storage: storageUser });
 
+//* Profile page
 router
   .route("/:id")
-  // .get(isLoggedIn, isProfileAuthor, catchAsync(profiles.renderProfilePage))
-  .get(catchAsync(profiles.renderProfilePage))
+  .get(isLoggedIn, isProfileAuthor, catchAsync(profiles.renderProfilePage))
   .put(
-    // isLoggedIn,
+    isLoggedIn,
     upload.array("image"),
-    // isProfileAuthor,
+    isProfileAuthor,
     catchAsync(profiles.updateProfile)
   );
 
+//* Profile place page
 router.get(
   "/:id/places",
-  // isLoggedIn,
-  // isProfileAuthor,
+  isLoggedIn,
+  isProfileAuthor,
   catchAsync(profiles.renderProfilePlaces)
 );
 

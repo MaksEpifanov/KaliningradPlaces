@@ -1,10 +1,10 @@
 const User = require("../models/user");
-
-const nameRegexp =
-  /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/gi;
-const passwordRegexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/gi;
-const emailRegexp =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gi;
+const regexp = {
+  username: /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/gi,
+  password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/gi,
+  email:
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gi,
+};
 
 module.exports.renderRegisterForm = (req, res) => {
   res.render("authentication/register", {
@@ -20,15 +20,15 @@ module.exports.registerNewUser = async (req, res, next) => {
       firstname = null,
       lastname = null,
     } = req.body;
-    if (!nameRegexp.test(username)) {
+    if (!regexp.username.test(username)) {
       throw new Error(
         "Incorrect name (The name must include letters, numbers, _)"
       );
     }
-    if (!emailRegexp.test(email)) {
+    if (!regexp.email.test(email)) {
       throw new Error("Incorrect email");
     }
-    if (!passwordRegexp.test(password)) {
+    if (!regexp.password.test(password)) {
       throw new Error(
         "Incorrect password (Minimum 6 characters, at least one letter and one number:)"
       );
@@ -38,7 +38,7 @@ module.exports.registerNewUser = async (req, res, next) => {
     req.login(registerUser, (err) => {
       if (err) next(err);
       req.flash("success", "Welcome to Kaliningrade place");
-      res.redirect("/places");
+      res.redirect("/places?page=1");
     });
   } catch (e) {
     if (e.code === 11000) {

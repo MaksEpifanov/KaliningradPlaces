@@ -10,14 +10,18 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const engine = require("ejs-mate");
 const mongoose = require("mongoose");
+
 const session = require("express-session");
+const { sessionSetups } = require("./utils/sessionSetups");
 const flash = require("connect-flash");
+
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+
+//* Security
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
-
-const helmetSrc = require("./utils/helmetSrs");
+const { helmetSetups } = require("./utils/helmetSetups");
 
 const User = require("./models/user");
 
@@ -38,11 +42,12 @@ const profilesRouter = require("./routes/profiles");
 
 const app = express();
 
-//* view engine setup
+//* View engine setups
 app.engine("ejs", engine);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+//* Main setups
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -50,35 +55,10 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-app.use(
-  session({
-    secret: process.env.SECRET_SESSION,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      httpOnly: true,
-      // secure: true, // Only HTTPS
-      expires: Date.now() * 1000 * 60 * 60 * 24 * 7,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
-  })
-);
+app.use(session(sessionSetups));
 app.use(flash());
 app.use(helmet());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: [],
-      connectSrc: ["'self'", ...helmetSrc.connectSrcUrls],
-      scriptSrc: ["'unsafe-inline'", "'self'", ...helmetSrc.scriptSrcUrls],
-      styleSrc: ["'self'", "'unsafe-inline'", ...helmetSrc.styleSrcUrls],
-      workerSrc: ["'self'", "blob:"],
-      objectSrc: [],
-      imgSrc: ["'self'", "blob:", "data:", ...helmetSrc.imagesSrcUrls],
-      fontSrc: ["'self'", ...helmetSrc.fontSrcUrls],
-    },
-  })
-);
+app.use(helmet.contentSecurityPolicy(helmetSetups));
 
 //* Initial Passport
 app.use(passport.initialize());

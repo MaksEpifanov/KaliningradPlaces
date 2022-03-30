@@ -11,7 +11,6 @@ const storagePlace = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "KaliningradPlaces",
-    // format: ['jpeg', 'jpg', 'png']
   },
 });
 

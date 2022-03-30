@@ -8,6 +8,7 @@ module.exports.renderProfilePage = async (req, res) => {
   res.render("profile/edit", { title: `${profile.username}`, profile });
 };
 
+//* Profile places
 module.exports.renderProfilePlaces = async (req, res) => {
   const { id } = req.params;
   const profile = await User.findById(id);

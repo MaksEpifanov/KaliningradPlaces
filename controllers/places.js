@@ -35,6 +35,8 @@ module.exports.renderNewForm = async (req, res) => {
 };
 module.exports.createPlace = async (req, res) => {
   const { lng, lat } = req.body.place;
+
+  //* return сountry, region, place etc... using reverseGeocode (mapbox API)
   const geoData = await geocoder
     .reverseGeocode({
       query: [+lng, +lat],
@@ -88,14 +90,15 @@ module.exports.updatePlace = async (req, res) => {
   }));
   await place.images.push(...files);
   await place.save();
-  if (req.body.deleteImages) {
-    for (const filename of req.body.deleteImages) {
-      await cloudinary.uploader.destroy(filename);
-    }
-    await place.updateOne({
-      $pull: { images: { filename: { $in: req.body.deleteImages } } },
-    });
-  }
+  // TODO delete images in place
+  // if (req.body.deleteImages) {
+  //   for (const filename of req.body.deleteImages) {
+  //     await cloudinary.uploader.destroy(filename);
+  //   }
+  //   await place.updateOne({
+  //     $pull: { images: { filename: { $in: req.body.deleteImages } } },
+  //   });
+  // }
   req.flash("success", "Success your update place");
   res.redirect(`/places/${id}`);
 };
