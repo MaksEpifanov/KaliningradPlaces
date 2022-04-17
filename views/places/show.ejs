@@ -16,7 +16,7 @@
   <div class="row row-cols-1 row-cols-md-2">
 <!-- * Image section -->
     <section class="col-md-7 order-md-1">
-      <% if (place.images.length < 1) {%>
+      <% if (place.images.length <= 1) {%>
         <div class="">
           <img src="<%= place.images[0].url %>" alt="<%= place.name %> image" class="img-fluid side-border-radius" />
         </div>
