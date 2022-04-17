@@ -17,8 +17,8 @@ const seedDB = async () => {
     const place = new Place({
       title: `${sample(descriptors)} ${sample(places)}`,
       location: `${cities[randomCity].city}, ${cities[randomCity].state}`,
-      // TODO author
-      author: "62434d42320843cd12b427f3",
+      // TODO: add author seeds
+      author: "625c276d3df615f1c28d8381",
       description:
         "Cupidatat consectetur laboris non sit aute nisi pariatur elit ipsum officia laboris consequat nisi ad. Et magna pariatur aliquip laborum reprehenderit laboris ut eu eu nisi aliquip aliquip esse eiusmod. Incididunt sint cillum do laborum deserunt laborum magna esse ut proident fugiat quis. Velit sit ad nostrud sint commodo proident minim reprehenderit proident tempor est. Fugiat exercitation mollit mollit laborum ea. Laboris laborum pariatur sit nulla tempor anim mollit commodo. Elit sint nisi duis ad mollit.",
       images: [

@@ -1,0 +1,21 @@
+.carousel-cell {
+  width: 100%;
+  /* full width */
+  height: 75vh; /* height of carousel */
+  margin-right: 10px;
+}
+
+.carousel-image {
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.carousel-wrap {
+  background-image: url("https://res.cloudinary.com/dr0eioqqm/image/upload/v1646928814/KaliningradPlaces/n4iqguiinlvfrklsn8ml.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}

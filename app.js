@@ -18,22 +18,21 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
-//* Security
+//NOTE: Security
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const { helmetSetups } = require("./utils/helmetSetups");
 
 const User = require("./models/user");
 
-//* connect mongoose mongoDB
-
+//NOTE: Connect mongoose mongoDB
 async function main() {
   await mongoose.connect("mongodb://localhost:27017/kaliningradplace");
   console.log("connect to mongoDB");
 }
 main().catch((err) => console.log(err));
 
-//* Routers
+//NOTE: Routers
 const indexRouter = require("./routes/index");
 const placesRouter = require("./routes/places");
 const reviewsRouter = require("./routes/reviews");
@@ -42,12 +41,12 @@ const profilesRouter = require("./routes/profiles");
 
 const app = express();
 
-//* View engine setups
+//NOTE: View engine setups
 app.engine("ejs", engine);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-//* Main setups
+//NOTE: Main setups
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -60,7 +59,7 @@ app.use(flash());
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy(helmetSetups));
 
-//* Initial Passport
+//NOTE: Initial Passport
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -74,19 +73,19 @@ app.use((req, res, next) => {
   next();
 });
 
-//* Routers
+//NOTE: Routers
 app.use("/", indexRouter);
 app.use("/places", placesRouter);
 app.use("/places/:id/reviews", reviewsRouter);
 app.use("/", authenticationRouter);
 app.use("/p", profilesRouter);
 
-//* catch 404 and forward to error handler
+//NOTE: catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
 
-//* error handler
+//NOTE: error handler
 app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;

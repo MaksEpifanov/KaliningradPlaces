@@ -40,6 +40,6 @@ module.exports.helmetSetups = {
     workerSrc: ["'self'", "blob:"],
     objectSrc: [],
     imgSrc: ["'self'", "blob:", "data:", ...imagesSrcUrls],
-    fontSrc: ["'self'", ...fontSrcUrls],
+    fontSrc: ["'self'", "'unsafe-inline'", ...fontSrcUrls],
   },
 };
