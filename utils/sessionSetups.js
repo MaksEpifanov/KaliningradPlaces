@@ -10,7 +10,7 @@ store.on("error", (e) => {
 
 module.exports.sessionSetups = {
   store,
-  secret: process.env.SECRET_SESSION || "betterPlaceInWorld"
+  secret: process.env.SECRET_SESSION || "betterPlaceInWorld",
   resave: false,
   saveUninitialized: true,
   cookie: {
