@@ -8,12 +8,12 @@ module.exports.renderProfilePage = async (req, res) => {
   res.render("profile/edit", { title: `${profile.username}`, profile });
 };
 
-//* Profile places
+//NOTE: Profile places
 module.exports.renderProfilePlaces = async (req, res) => {
   const { id } = req.params;
   const profile = await User.findById(id);
 
-  //* pagination
+  //NOTE: pagination
   const page = parseInt(req.query.page, 10);
   const limit = 9;
   const skipIndex = (page - 1) * limit;
@@ -38,10 +38,12 @@ module.exports.updateProfile = async (req, res) => {
   if (req.files[0] && profile.image.url) {
     await cloudinary.uploader.destroy(profile.image.filename);
   }
-  profile.image = {
-    url: req.files[0].path,
-    filename: req.files[0].filename,
-  };
+  if (req.files[0]) {
+    profile.image = {
+      url: req.files[0].path,
+      filename: req.files[0].filename,
+    };
+  }
   profile.save();
   req.flash("success", "Success your update profile");
   res.redirect(`/p/${id}`);
