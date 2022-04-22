@@ -5,32 +5,28 @@
 </script>
 <link rel="stylesheet" href="/stylesheets/starability.css"/>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet"/>
-<link href="/stylesheets/flickity.min.css" rel="stylesheet" media="screen"/>
-<link href="/stylesheets/fullscreen.css" rel="stylesheet" media="screen"/>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
-<script src="/javascripts/flickity/flickity.min.js"></script>
 
 
 <div class="container side-border-radius box-shadow p-3">
   <div class="row row-cols-1 row-cols-md-2">
-<!-- * Image section -->
+<!-- NOTE: Image section -->
     <section class="col-md-7 order-md-1">
       <% if (place.images.length <= 1) {%>
         <div class="">
           <img src="<%= place.images[0].url %>" alt="<%= place.name %> image" class="img-fluid side-border-radius" />
         </div>
       <% } else {%>
-<!-- * Carousel -->
-<!-- TODO Mod carousel (swiper.js) -->
-        <!-- <div id="carouselExampleControls" class="carousel slide h-100" data-bs-ride="carousel">
+  <!-- TODO: Carousel -->
+         <div id="carouselExampleControls" class="carousel slide h-100" data-bs-ride="carousel">
           <div class="carousel-inner ">
             <div class="carousel-item active side-border-radius">
-              <img src="<%= place.images[0].url %>" class="d-block w-100 " alt="1 slide image" style="max-height: 600px; object-fit: contain;"/>
+              <img src="<%= place.images[0].url %>" class="d-block w-100 " alt="1 slide image" />
             </div>
             <% for (let i = 1; i < place.images.length; i++) { %>
               <div class="carousel-item side-border-radius">
-                <img src="<%= place.images[i].url %>" class="d-block w-100" alt="<%= i %> slide image" style="max-height: 600px; object-fit: contain;"/>
+                <img src="<%= place.images[i].url %>" class="d-block w-100" alt="<%= i %> slide image" />
               </div>
             <% } %>
           </div>
@@ -42,23 +38,11 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
-        </div> -->
-        <div class="main-carousel">
-          <div class="carousel-cell">
-            <div class="carousel-wrap" ></div>
-            <!-- <img src="<%= place.images[0].url %>" class="d-block w-100 carousel-image" alt="1 slide image" /> -->
-          </div>
-          <div class="carousel-cell">
-            <img src="<%= place.images[1].url %>" class="d-block w-100 carousel-image" alt="1 slide image" />
-          </div>
-          <div class="carousel-cell">
-            <img src="<%= place.images[0].url %>" class="d-block w-100 carousel-image" alt="1 slide image" />
-          </div>
-        </div>
+        </div> 
       <% } %>
-      
     </section>
-<!-- * main section -->
+    
+<!-- NOTE: main section -->
     <main class="col-md-5 d-flex flex-column order-mAd-0">
       <h2 class="fs-3 fw-bold my-4 mt-md-0"><%= place.title %></h2>
       <div class="d-flex justify-content-between">
@@ -85,7 +69,7 @@
         </div>
       </div>
       
-<!-- * Map -->
+<!-- NOTE: Map -->
       <div id="map" class="side-border-radius" style="width: 100%; height: 300px"></div>
 
       <p class="fs-6 my-3"><%= place.description %></p>
@@ -97,7 +81,7 @@
       <% } %> 
     </main>
 
-<!-- * Modal reviews -->
+<!-- NOTE: Modal reviews -->
   <% if(currentUser) { %>
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -134,7 +118,7 @@
   <% } %>
   </div>
 
-<!-- * Reviews section -->
+<!-- NOTE: Reviews section -->
   <div class="row row-cols-1 row-cols-md-2">
     <% if (place.reviews.length) {%> 
       <% for (let rev of place.reviews) {%>
@@ -187,5 +171,3 @@
   </div>
 </div>
 <script src="/javascripts/mapbox/mapShow.js"></script>
-<script src="/javascripts/flickity/flickity-init.js"></script>
-<script src="/javascripts/flickity/bg-lazyload.js"></script>
