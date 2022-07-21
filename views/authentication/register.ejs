@@ -3,18 +3,18 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 border border-dark border-5 bg-dark side-border-radius box-size">
     <main class="col p-4 p-md-5 py-md-4 bg-white side-image side-border-radius">
-      <form action="/register" method="POST" id="registerForm" class="validated-form d-flex flex-column justify-content-evenly h-100" novalidate autocomplete="off" >
+      <form action="/register" method="POST" id="registerForm" class="validated-form d-flex flex-column justify-content-evenly h-100" novalidate autocomplete="off">
         <h4 class="display-6 fw-bold">Create account</h4>
         <div>
           <div class="mb-2 position-relative">
             <label class="form-label" for="username">Name:</label>
             <div class="alert alert-primary position-absolute w-100 bottom-50" role="alert" hidden></div>
-            <input class="form-control py-2" type="text" name="username" id="username" placeholder="Your Login" required/>
+            <input class="form-control py-2" type="text" name="username" id="username" placeholder="Your Login" required autocomplete="off"/>
           </div>
           <div class="mb-2 position-relative">
             <label class="form-label" for="email">Email:</label>
             <div class="alert alert-primary position-absolute w-100 bottom-50" role="alert" hidden></div>
-            <input class="form-control py-2" type="email" name="email" id="email" placeholder="Example@example.com" required/>
+            <input class="form-control py-2" type="email" name="email" id="email" placeholder="Example@example.com" required autocomplete="off"/>
           </div>
           <div class="mb-2 position-relative">
             <label class="form-label" for="password">Password:</label>

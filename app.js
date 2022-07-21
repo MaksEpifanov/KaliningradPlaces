@@ -26,11 +26,11 @@ const { helmetSetups } = require("./utils/helmetSetups");
 const User = require("./models/user");
 
 //NOTE: Connect mongoose mongoDB
-const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/kaliningradplace"
-
+const dbUrl =
+  process.env.DB_URL || "mongodb://localhost:27017/kaliningradplace";
 async function main() {
-  await mongoose.connect(dbUrl)
-  console.log(`connect to mongoDB ${dbUrl}`)
+  await mongoose.connect(dbUrl);
+  console.log(`connect to mongoDB ${dbUrl}`);
 }
 main().catch((err) => console.log(err));
 
@@ -40,7 +40,6 @@ const placesRouter = require("./routes/places");
 const reviewsRouter = require("./routes/reviews");
 const authenticationRouter = require("./routes/authentication");
 const profilesRouter = require("./routes/profiles");
-const { db } = require("./models/user");
 
 const app = express();
 
