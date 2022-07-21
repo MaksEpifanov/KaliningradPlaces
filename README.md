@@ -19,6 +19,7 @@
       <a href="#my-process">My process</a>
       <ul>
         <li><a href="#technologies">Technologies</a></li>
+        <li><a href="#features">Features</a></li>
         <li><a href="#what-i-learned">What I learned</a></li>
       </ul>
     </li>
@@ -44,15 +45,43 @@
 
 ## My process
 
-
-
 ### Technologies
 
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/) [![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)](https://expressjs.com/)
+* [![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/) ([Mongoose](https://mongoosejs.com/))
+* [![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) ([EJS](https://ejs.co/))
+* [![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/)
+* [![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)](https://www.heroku.com/)
+
+  #### Middlewares for Node.js (Express.js):
+  * [passport](https://www.npmjs.com/package/passport) - Аутентификация
+  * [cors](https://www.npmjs.com/package/cors) - Безопасность
+  * [helmet](https://www.npmjs.com/package/helmet) - Безопасность
+  * etc... --> [package.json](./package.json) 
+
+  #### API:
+  * [MapBox](https://www.mapbox.com/) - Для отображения кластеров и выбора маркера места.
+  * [Cloudinary](https://cloudinary.com/) - Для хранения изображений.
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Features
+
+* Аутентификация и авторизация пользователя (реализованно с помощью: passport).
+* Валидация при регистрации/аутентификации на стороне клиента и на стороне бэкенда.
+* Отдельная страница профиля с возможностью изменения пользовательских данных и управлением созданных "мест".
+* Создание, редактирование и удаление "места" с указанием названия, описания, фотографиями и отметкой на карте с координатами (MapBox API).
+* Пагинация "мест".
+* Возможность просматривать "места" и оставлять комментарии.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### What I learned
+
+* Приобрел и укрепил понимание работы Web. 
+* Знание CRUD операций, создание ответов на запросы.
+* Базовое взаимодействие с noSQL базой данных (MongoDB). Установка на локальной машине (Linux) и работа с ней через терминал.
+* Освоил работу с API.
+* Приобрел базовое представление о безопасности в Web
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -92,6 +121,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Maks Klimov - [@klimov4_maks](https://twitter.com/klimov4_maks) - maksklimovbr@gmail.com
+Maks Klimov  
+
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/klimov4_maks)
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/MaksKlimovBR)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](maksklimovbr@gmail.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
